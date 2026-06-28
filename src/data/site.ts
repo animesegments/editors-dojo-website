@@ -4,6 +4,7 @@ export const SITE = {
   url: 'https://editorsdojo.site',
   email: 'contact@editorsdojo.site',
   logo: 'https://res.cloudinary.com/dvcfnltlh/image/upload/v1782665413/editorsdojo_logo_ckn2uy.png',
+  favicon: 'https://res.cloudinary.com/dvcfnltlh/image/upload/v1782668018/favicon_rba1xx.png',
   instagram: {
     editorsdojo: 'https://www.instagram.com/editorsdojo/',
     animeSegments: 'https://www.instagram.com/anime.segments/',
