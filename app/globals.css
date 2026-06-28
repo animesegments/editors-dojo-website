@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+:root {
+  --color-bg-primary: #FFF6E8;
+  --color-bg-secondary: #F7F0E2;
+  --color-bg-card: #FFFBF5;
+  --color-gold: #B8892F;
+  --color-gold-hover: #D4A64A;
+  --color-dark: #121212;
+  --color-text-body: #222222;
+  --color-text-muted: #777777;
+  --color-border: #E6DCCB;
+  --font-sans: 'Coolvetica', system-ui, sans-serif;
+  --font-script: 'Edwardian Script ITC', cursive;
+  --ease-apple: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+[data-theme="dark"] {
+  --color-bg-primary: #121212;
+  --color-bg-secondary: #1A1A1A;
+  --color-bg-card: #1F1F1F;
+  --color-gold: #C9A66B;
+  --color-gold-hover: #D4B88A;
+  --color-dark: #F5F5F5;
+  --color-text-body: #E5E5E5;
+  --color-text-muted: #A0A0A0;
+  --color-border: #333333;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.paper-texture { position: relative; }
+.paper-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(0,0,0,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.015) 1px, transparent 1px);
+  background-size: 4px 4px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ed-button { display: inline-flex; align-items: center; justify-content: center; height: 56px; padding: 0 24px; font-size: 15px; font-weight: 500; border-radius: 4px; transition: all 0.3s var(--ease-apple); }
+.ed-button-primary { background: transparent; color: var(--color-gold); border: 1px solid var(--color-gold); }
+.ed-button-primary:hover { background: var(--color-gold); color: var(--color-bg-primary); }
+.ed-button-secondary { background: transparent; color: var(--color-text-body); }
+.ed-button-secondary:hover { color: var(--color-gold); }
+
+.ed-card { background: var(--color-bg-card); border-radius: 8px; padding: 48px; box-shadow: 0 10px 30px rgba(18,18,18,0.06); transition: all 0.4s var(--ease-apple); }
+.ed-card:hover { transform: translateY(-4px); border: 1px solid var(--color-gold); }
+
+.hero-headline { font-weight: 900; line-height: 0.92; letter-spacing: -0.01em; }
+.hero-script { font-family: var(--font-script); color: var(--color-gold); }
+
+.ed-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(255,246,232,0.95); backdrop-filter: blur(12px); }
+
+[data-theme="dark"] .ed-nav { background: rgba(18,18,18,0.95); }
+
+:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; }
