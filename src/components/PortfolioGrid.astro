@@ -1,0 +1,19 @@
+---
+import VideoCard from './VideoCard.astro';
+import type { PortfolioItem } from '../data/portfolio';
+
+interface Props {
+  items: PortfolioItem[];
+  layout?: 'showcase' | 'preview' | 'grid';
+}
+
+const { items, layout = 'grid' } = Astro.props;
+---
+
+<div class:list={['portfolio-grid', `portfolio-grid--${layout}`]} data-stagger>
+  {items.map((item, i) => (
+    <div class="portfolio-grid-item" style={`--i: ${i}`}>
+      <VideoCard item={item} />
+    </div>
+  ))}
+</div>

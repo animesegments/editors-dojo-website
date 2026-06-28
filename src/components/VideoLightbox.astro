@@ -1,0 +1,48 @@
+<div class="video-lightbox" id="video-lightbox" hidden aria-hidden="true">
+  <div class="video-lightbox-backdrop" data-close-lightbox></div>
+  <div class="video-lightbox-panel" role="dialog" aria-modal="true" aria-label="Video player">
+    <button type="button" class="video-lightbox-close" data-close-lightbox aria-label="Close video">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12"></path>
+      </svg>
+    </button>
+    <div class="video-lightbox-embed" id="video-lightbox-embed"></div>
+  </div>
+</div>
+
+<script>
+  const lightbox = document.getElementById('video-lightbox');
+  const embedHost = document.getElementById('video-lightbox-embed');
+
+  function openLightbox(src: string, title: string) {
+    if (!lightbox || !embedHost) return;
+    embedHost.innerHTML = `<iframe src="${src}&autoplay=1" allow="autoplay; fullscreen; picture-in-picture" title="${title}" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>`;
+    lightbox.hidden = false;
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    if (!lightbox || !embedHost) return;
+    embedHost.innerHTML = '';
+    lightbox.hidden = true;
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.cinema-card').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const src = btn.getAttribute('data-vimeo-src');
+      const label = btn.getAttribute('aria-label')?.replace('Play ', '') ?? 'Video';
+      if (src) openLightbox(src, label);
+    });
+  });
+
+  lightbox?.querySelectorAll('[data-close-lightbox]').forEach((el) => {
+    el.addEventListener('click', closeLightbox);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox && !lightbox.hidden) closeLightbox();
+  });
+</script>

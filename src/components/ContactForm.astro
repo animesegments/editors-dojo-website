@@ -1,0 +1,60 @@
+---
+import { SITE } from '../data/site';
+---
+
+<form class="contact-form" id="contact-form">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required autocomplete="name" />
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required autocomplete="email" />
+  </div>
+
+  <div class="form-group">
+    <label for="social">Instagram / Website</label>
+    <input type="text" id="social" name="social" placeholder="@yourhandle or yoursite.com" />
+  </div>
+
+  <div class="form-group">
+    <label for="video-type">What type of video do you need edited?</label>
+    <select id="video-type" name="video-type" required>
+      <option value="">Select a type</option>
+      <option value="Talking head / educational">Talking head / educational</option>
+      <option value="Personal brand reel">Personal brand reel</option>
+      <option value="Promotional / product">Promotional / product</option>
+      <option value="Other short-form">Other short-form</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" placeholder="Tell me about your project, timeline, and goals." required></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Request Free Sample Edit</button>
+</form>
+
+<script define:vars={{ email: SITE.email }}>
+  const form = document.getElementById('contact-form');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const data = new FormData(form);
+    const name = data.get('name');
+    const userEmail = data.get('email');
+    const social = data.get('social');
+    const videoType = data.get('video-type');
+    const message = data.get('message');
+
+    const subject = encodeURIComponent(`Sample Edit Request from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${userEmail}\nInstagram/Website: ${social || 'N/A'}\nVideo Type: ${videoType}\n\nMessage:\n${message}`
+    );
+
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+  });
+</script>

@@ -1,0 +1,16 @@
+export const SITE = {
+  name: 'editorsdojo',
+  domain: 'editorsdojo.site',
+  url: 'https://editorsdojo.site',
+  email: 'contact@editorsdojo.site',
+  logo: 'https://res.cloudinary.com/dvcfnltlh/image/upload/v1782665413/editorsdojo_logo_ckn2uy.png',
+  instagram: {
+    editorsdojo: 'https://www.instagram.com/editorsdojo/',
+    animeSegments: 'https://www.instagram.com/anime.segments/',
+  },
+  title: 'editorsdojo | Freelance Short-Form Video Editor',
+  description:
+    'Premium short-form video editing for creators, coaches, entrepreneurs, and personal brands. Cinematic Reels, TikToks, and YouTube Shorts by editorsdojo.',
+  keywords:
+    'freelance video editor, short form video editor, reels editor, tiktok editor, youtube shorts editor, personal brand video editor, cinematic video editing, editorsdojo',
+} as const;
