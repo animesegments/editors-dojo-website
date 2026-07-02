@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import OwnedMedia from '../components/OwnedMedia.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import { SITE } from '../data/site';
+---
+
+<BaseLayout
+  title="editorsdojo | About"
+  description="About editorsdojo — a freelance video editing brand built around discipline, clarity, and cinematic storytelling."
+  path="/about"
+>
+  <header class="page-header">
+    <div class="container">
+      <span class="section-label">About</span>
+      <h1 class="section-title">The <span class="accent-script">dojo</span> behind the edits</h1>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container about-grid">
+      <div class="about-content">
+        <p>
+          editorsdojo is a freelance video editing brand built around discipline, clarity, and cinematic storytelling. The goal is simple: turn raw footage into short-form content that looks premium, holds attention, and helps personal brands communicate with more impact.
+        </p>
+        <p>
+          I'm currently focused on helping creators, coaches, entrepreneurs, and personal brands improve the way their content looks and feels online.
+        </p>
+
+        <div class="pull-quote">
+          <p>Built for attention, clarity, and trust.</p>
+        </div>
+      </div>
+
+      <div class="about-visual">
+        <div class="about-logo-wrap">
+          <div class="about-logo-glow" aria-hidden="true"></div>
+          <div class="about-logo-backdrop" aria-hidden="true"></div>
+          <img
+            src={SITE.logo}
+            alt="editorsdojo logo"
+            class="about-logo-img brand-logo"
+            width="220"
+            height="220"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <OwnedMedia />
+    </div>
+  </section>
+
+  <ContactCTA />
+</BaseLayout>

@@ -1,0 +1,90 @@
+---
+import '../styles/global.css';
+import LoadingScreen from '../components/LoadingScreen.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  path?: string;
+}
+
+const {
+  title = SITE.title,
+  description = SITE.description,
+  path = '/',
+} = Astro.props;
+
+const canonical = new URL(path, SITE.url).href;
+const ogImage = SITE.logo;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={SITE.keywords} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href={SITE.favicon} />
+    <link rel="apple-touch-icon" href={SITE.favicon} />
+    <title>{title}</title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content={SITE.name} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+  </head>
+  <body>
+    <LoadingScreen />
+    <Nav currentPath={path} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <script src="https://player.vimeo.com/api/player.js" defer></script>
+    <script>
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function reveal(el: Element) {
+        el.classList.add('is-visible');
+      }
+
+      if (!prefersReduced) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                reveal(entry.target);
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.08, rootMargin: '0px 0px -24px 0px' }
+        );
+
+        document.querySelectorAll('[data-animate]').forEach((el) => observer.observe(el));
+
+        document.querySelectorAll('[data-stagger] .portfolio-grid-item, [data-stagger] .service-card, [data-stagger] .process-step').forEach((item) => {
+          observer.observe(item);
+        });
+
+        document.querySelectorAll('.portfolio-grid-item').forEach((item) => {
+          if (!item.closest('[data-stagger]')) observer.observe(item);
+        });
+      } else {
+        document.querySelectorAll('[data-animate], .portfolio-grid-item, .service-card, .process-step').forEach(reveal);
+      }
+    </script>
+  </body>
+</html>

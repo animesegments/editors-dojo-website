@@ -1,0 +1,30 @@
+---
+import { SITE } from '../data/site';
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo">
+          <img src={SITE.logo} alt="editorsdojo" class="brand-logo brand-logo--footer" />
+        </a>
+        <p class="footer-tagline">Edit with discipline.</p>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      </div>
+
+      <div>
+        <h4>Instagram</h4>
+        <a href={SITE.instagram.editorsdojo} target="_blank" rel="noopener noreferrer">@editorsdojo</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; {new Date().getFullYear()} {SITE.domain}. All rights reserved.
+    </div>
+  </div>
+</footer>

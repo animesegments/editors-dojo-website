@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { SITE } from '../data/site';
+---
+
+<BaseLayout
+  title="editorsdojo | Contact"
+  description="Contact editorsdojo for a free sample edit. Premium short-form video editing for creators and personal brands."
+  path="/contact"
+>
+  <header class="page-header">
+    <div class="container">
+      <span class="section-label">Contact</span>
+      <h1 class="section-title">Want your raw video turned into a premium short-form edit?</h1>
+      <p class="section-subtitle">
+        Fill out the form below or reach out directly. I'll get back to you as soon as I can.
+      </p>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container contact-layout">
+      <ContactForm />
+
+      <aside class="contact-info">
+        <h3>Direct contact</h3>
+
+        <div class="contact-info-item">
+          <p class="label">Email</p>
+          <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+        </div>
+
+        <div class="contact-info-item">
+          <p class="label">Instagram</p>
+          <a href={SITE.instagram.editorsdojo} target="_blank" rel="noopener noreferrer">@editorsdojo</a>
+        </div>
+
+        <p style="font-size: 0.88rem; color: var(--taupe); margin-top: 1.5rem;">
+          Prefer email? Reach out directly — no form required.
+        </p>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

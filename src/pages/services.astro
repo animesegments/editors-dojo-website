@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ContactCTA from '../components/ContactCTA.astro';
+import { SITE } from '../data/site';
+---
+
+<BaseLayout
+  title="editorsdojo | Services"
+  description="Short-form video editing, cinematic personal brand edits, and free sample edits by editorsdojo."
+  path="/services"
+>
+  <header class="page-header">
+    <div class="container">
+      <span class="section-label">Services</span>
+      <h1 class="section-title">What I offer</h1>
+      <p class="section-subtitle">
+        Three focused services for creators and personal brands who want their content to look premium.
+      </p>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="services-grid">
+        <ServiceCard
+          number="01"
+          title="Short-Form Video Editing"
+          description="Clean, engaging edits for Reels, TikTok, and YouTube Shorts."
+        />
+        <ServiceCard
+          number="02"
+          title="Cinematic Personal Brand Edits"
+          description="Premium storytelling edits for creators, coaches, entrepreneurs, and educators."
+        />
+        <ServiceCard
+          number="03"
+          title="Free Sample Edit"
+          description="Send me a raw clip and I'll create a short sample so you can see the editing style before working together."
+        />
+      </div>
+
+      <div class="pricing-note">
+        <strong>Custom pricing</strong> based on video style, volume, and turnaround.
+      </div>
+
+      <p class="text-center mt-2">
+        <a href={`mailto:${SITE.email}`} class="btn btn-gold">Email me at {SITE.email}</a>
+      </p>
+    </div>
+  </section>
+
+  <ContactCTA />
+</BaseLayout>
