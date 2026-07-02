@@ -1,5 +1,6 @@
 ---
-import { SITE } from '../data/site';
+import ThemeToggle from './ThemeToggle.astro';
+import Logo from './Logo.astro';
 
 interface Props {
   currentPath: string;
@@ -19,8 +20,7 @@ const links = [
 <header class="nav">
   <div class="container nav-inner">
     <a href="/" class="nav-logo" aria-label="editorsdojo home">
-      <span class="nav-logo-backdrop" aria-hidden="true"></span>
-      <img src={SITE.logo} alt="editorsdojo logo" class="brand-logo" />
+      <Logo class="brand-logo nav-logo-img" width={180} height={180} eager />
     </a>
 
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" id="nav-toggle">
@@ -49,7 +49,10 @@ const links = [
       </ul>
     </nav>
 
-    <a href="/contact" class="btn btn-primary nav-cta-desktop">Book a Free Sample Edit</a>
+    <div class="nav-actions">
+      <ThemeToggle />
+      <a href="/contact" class="btn btn-primary nav-cta-desktop">Book a Free Sample Edit</a>
+    </div>
   </div>
 
   <div class="nav-mobile-panel" id="nav-mobile-panel" hidden>
@@ -69,6 +72,9 @@ const links = [
           </a>
         </li>
       ))}
+      <li class="nav-mobile-theme">
+        <ThemeToggle />
+      </li>
       <li class="nav-mobile-cta">
         <a href="/contact" class="btn btn-primary btn-block">Book a Free Sample Edit</a>
       </li>

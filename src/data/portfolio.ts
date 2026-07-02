@@ -29,9 +29,14 @@ export const portfolioItems: PortfolioItem[] = [
     type: 'Portfolio Piece',
   },
   {
-    vimeoId: '1205256587',
-    title: 'Conceptual Short-Form Edit',
-    type: 'Concept Edit',
+    vimeoId: '1206585673',
+    title: 'Prospect Free Value #2',
+    type: 'Sample Edit',
+  },
+  {
+    vimeoId: '1206585674',
+    title: 'Sequence 01',
+    type: 'Portfolio Piece',
   },
   {
     vimeoId: '1205256582',

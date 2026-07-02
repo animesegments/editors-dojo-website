@@ -2,18 +2,18 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import OwnedMedia from '../components/OwnedMedia.astro';
 import ContactCTA from '../components/ContactCTA.astro';
-import { SITE } from '../data/site';
+import Logo from '../components/Logo.astro';
 ---
 
 <BaseLayout
   title="editorsdojo | About"
-  description="About editorsdojo — a freelance video editing brand built around discipline, clarity, and cinematic storytelling."
+  description="About editorsdojo — a freelance video editing brand built around discipline, clean visuals, and strong storytelling."
   path="/about"
 >
   <header class="page-header">
     <div class="container">
       <span class="section-label">About</span>
-      <h1 class="section-title">The <span class="accent-script">dojo</span> behind the edits</h1>
+      <h1 class="section-title">The dojo behind the edits</h1>
     </div>
   </header>
 
@@ -21,10 +21,13 @@ import { SITE } from '../data/site';
     <div class="container about-grid">
       <div class="about-content">
         <p>
-          editorsdojo is a freelance video editing brand built around discipline, clarity, and cinematic storytelling. The goal is simple: turn raw footage into short-form content that looks premium, holds attention, and helps personal brands communicate with more impact.
+          editorsdojo is a freelance video editing brand built around discipline, clean visuals, and strong storytelling.
         </p>
         <p>
-          I'm currently focused on helping creators, coaches, entrepreneurs, and personal brands improve the way their content looks and feels online.
+          The goal is simple: take raw footage and turn it into short-form content that looks premium, keeps attention, and helps personal brands show up better online.
+        </p>
+        <p>
+          I'm focused on helping creators, coaches, entrepreneurs, and personal brands improve the way their videos look, feel, and flow.
         </p>
 
         <div class="pull-quote">
@@ -35,14 +38,7 @@ import { SITE } from '../data/site';
       <div class="about-visual">
         <div class="about-logo-wrap">
           <div class="about-logo-glow" aria-hidden="true"></div>
-          <div class="about-logo-backdrop" aria-hidden="true"></div>
-          <img
-            src={SITE.logo}
-            alt="editorsdojo logo"
-            class="about-logo-img brand-logo"
-            width="220"
-            height="220"
-          />
+          <Logo class="about-logo-img brand-logo" width={220} height={220} />
         </div>
       </div>
     </div>

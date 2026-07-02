@@ -3,14 +3,22 @@ interface Props {
   number: string;
   title: string;
   description: string;
+  shortLine?: string;
+  bestFor?: string;
   index?: number;
 }
 
-const { number, title, description, index = 0 } = Astro.props;
+const { number, title, description, shortLine, bestFor, index = 0 } = Astro.props;
 ---
 
 <article class="service-card" style={`--i: ${index}`}>
   <span class="number">{number}</span>
   <h3>{title}</h3>
+  {shortLine && <p class="service-short-line">{shortLine}</p>}
   <p>{description}</p>
+  {bestFor && (
+    <p class="service-best-for">
+      <strong>Best for:</strong> {bestFor}
+    </p>
+  )}
 </article>

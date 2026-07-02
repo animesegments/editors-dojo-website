@@ -1,6 +1,9 @@
 ---
+import '../styles/theme.css';
 import '../styles/global.css';
 import LoadingScreen from '../components/LoadingScreen.astro';
+import AnimatedBackground from '../components/AnimatedBackground.astro';
+import SoundEffects from '../components/SoundEffects.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { SITE } from '../data/site';
@@ -24,11 +27,26 @@ const ogImage = SITE.logo;
 <!doctype html>
 <html lang="en">
   <head>
+    <script is:inline>
+      (function () {
+        var key = 'editorsdojo-theme';
+        var theme = 'light';
+        try {
+          var saved = localStorage.getItem(key);
+          if (saved === 'light' || saved === 'dark') theme = saved;
+          else if (window.matchMedia('(prefers-color-scheme: dark)').matches) theme = 'dark';
+        } catch (e) {
+          if (window.matchMedia('(prefers-color-scheme: dark)').matches) theme = 'dark';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="keywords" content={SITE.keywords} />
     <link rel="canonical" href={canonical} />
+    <link rel="preload" as="image" href={SITE.logo} type="image/png" />
     <link rel="icon" type="image/png" href={SITE.favicon} />
     <link rel="apple-touch-icon" href={SITE.favicon} />
     <title>{title}</title>
@@ -46,6 +64,7 @@ const ogImage = SITE.logo;
     <meta name="twitter:image" content={ogImage} />
   </head>
   <body>
+    <AnimatedBackground />
     <LoadingScreen />
     <Nav currentPath={path} />
     <main>
@@ -53,6 +72,62 @@ const ogImage = SITE.logo;
     </main>
     <Footer />
     <script src="https://player.vimeo.com/api/player.js" defer></script>
+    <SoundEffects />
+    <script>
+      const THEME_KEY = 'editorsdojo-theme';
+
+      function getSystemTheme() {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+
+      function getStoredTheme() {
+        try {
+          const saved = localStorage.getItem(THEME_KEY);
+          if (saved === 'light' || saved === 'dark') return saved;
+        } catch { /* noop */ }
+        return null;
+      }
+
+      function updateToggleLabels(theme) {
+        document.querySelectorAll('.theme-toggle').forEach((btn) => {
+          btn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+          btn.setAttribute('aria-pressed', String(theme === 'dark'));
+        });
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        updateToggleLabels(theme);
+      }
+
+      function setTheme(theme, persist = true) {
+        applyTheme(theme);
+        if (persist) {
+          try { localStorage.setItem(THEME_KEY, theme); } catch { /* noop */ }
+        }
+      }
+
+      applyTheme(getStoredTheme() ?? getSystemTheme());
+
+      function toggleTheme() {
+        const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+        setTheme(current === 'dark' ? 'light' : 'dark');
+      }
+
+      document.querySelectorAll('.theme-toggle').forEach((btn) => {
+        btn.addEventListener('click', toggleTheme);
+        btn.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleTheme();
+          }
+        });
+      });
+
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (getStoredTheme() === null) applyTheme(e.matches ? 'dark' : 'light');
+      });
+    </script>
     <script>
       const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -75,7 +150,7 @@ const ogImage = SITE.logo;
 
         document.querySelectorAll('[data-animate]').forEach((el) => observer.observe(el));
 
-        document.querySelectorAll('[data-stagger] .portfolio-grid-item, [data-stagger] .service-card, [data-stagger] .process-step').forEach((item) => {
+        document.querySelectorAll('[data-stagger] .portfolio-grid-item, [data-stagger] .service-card, [data-stagger] .process-step, [data-stagger] .style-card').forEach((item) => {
           observer.observe(item);
         });
 
@@ -83,7 +158,7 @@ const ogImage = SITE.logo;
           if (!item.closest('[data-stagger]')) observer.observe(item);
         });
       } else {
-        document.querySelectorAll('[data-animate], .portfolio-grid-item, .service-card, .process-step').forEach(reveal);
+        document.querySelectorAll('[data-animate], .portfolio-grid-item, .service-card, .process-step, .style-card').forEach(reveal);
       }
     </script>
   </body>

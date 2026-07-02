@@ -1,0 +1,32 @@
+---
+pid: 2300
+cwd: "C:\Users\Admin\Downloads\website-main"
+command: "cmd /c \"cd /d C:\\Users\\Admin\\Downloads\\website-main && npm run dev -- --host\""
+started_at: 2026-07-02T20:12:31.296Z
+running_for_ms: 3345001  
+---
+
+> editorsdojo@0.0.1 dev
+> astro dev --host
+
+01:42:32 [vite] connected.
+01:42:33 [types] Generated 1ms
+01:42:33 [vite] connected.
+ astro  v7.0.3 ready in 1028 ms
+┃ Local    http://localhost:4321/
+┃ Network  http://26.205.21.232:4321/
+           http://169.254.83.107:4321/
+           http://172.16.0.2:4321/
+           http://192.168.1.6:4321/
+01:42:33 watching for file changes...
+01:45:15 [200] /portfolio 38ms
+01:45:15 [200] /portfolio 5ms
+01:45:24 [200] /services 17ms
+01:45:34 [200] /about 16ms
+01:46:43 [watch] /src/styles/global.css
+01:48:17 [watch] /src/styles/global.css
+01:48:17 [watch] src/layouts/BaseLayout.astro
+01:48:17 [watch] /src/styles/global.css
+01:48:17 [watch] src/components/CursorGlow.astro
+01:48:23 [watch] /src/styles/global.css
+01:48:30 [watch] /src/styles/global.css

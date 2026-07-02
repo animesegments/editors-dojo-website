@@ -1,8 +1,9 @@
 ---
 import '../styles/loader-fonts.css';
-import { SITE } from '../data/site';
+import Logo from './Logo.astro';
 
-const LOADER_MS = 1500;
+const LOADER_MS = 750;
+const FADE_MS = 320;
 ---
 
 <div class="loader" id="site-loader" aria-hidden="false" aria-label="Loading editorsdojo">
@@ -10,51 +11,56 @@ const LOADER_MS = 1500;
   <div class="loader-inner">
     <div class="loader-brand">
       <div class="loader-logo-wrap">
-        <div class="loader-logo-ring" aria-hidden="true"></div>
-        <div class="loader-logo-glow" aria-hidden="true"></div>
-        <img src={SITE.logo} alt="" class="loader-logo" width="280" height="280" />
+        <Logo class="loader-logo brand-logo" width={180} height={180} eager />
       </div>
 
-      <p class="loader-wordmark" aria-label="editorsdojo">
-        <span class="loader-wordmark-sans">editors</span><span class="loader-wordmark-script">dojo</span>
-      </p>
+      <div class="loader-timeline" aria-hidden="true">
+        <span class="loader-timeline-line"></span>
+        <span class="loader-timeline-slash"></span>
+      </div>
 
-      <div class="loader-divider" aria-hidden="true"><span></span></div>
-
-      <p class="loader-tagline">
-        <span class="loader-tagline-script">crafted</span>
-        <span class="loader-tagline-sans">with discipline</span>
-      </p>
-    </div>
-
-    <div class="loader-bar">
-      <div class="loader-bar-fill"></div>
+      <p class="loader-tagline-minimal">edit with discipline.</p>
     </div>
   </div>
 </div>
 
-<script define:vars={{ loaderMs: LOADER_MS }}>
+<script define:vars={{ loaderMs: LOADER_MS, fadeMs: FADE_MS }}>
   const loader = document.getElementById('site-loader');
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const duration = prefersReduced ? 0 : loaderMs;
+  const fade = prefersReduced ? 0 : fadeMs;
+  let hidden = false;
+  let minElapsed = prefersReduced;
+  let pageLoaded = document.readyState === 'complete';
 
   function hideLoader() {
-    if (!loader) return;
+    if (!loader || hidden) return;
+    hidden = true;
     loader.classList.add('loader-out');
     loader.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('is-loading');
-    setTimeout(() => loader.remove(), prefersReduced ? 0 : 400);
+    setTimeout(() => loader.remove(), fade);
+  }
+
+  function tryHide() {
+    if (minElapsed && pageLoaded) hideLoader();
   }
 
   document.body.classList.add('is-loading');
 
-  function startTimer() {
-    setTimeout(hideLoader, duration);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startTimer);
+  if (prefersReduced) {
+    hideLoader();
   } else {
-    startTimer();
+    setTimeout(() => {
+      minElapsed = true;
+      tryHide();
+    }, duration);
+
+    if (!pageLoaded) {
+      window.addEventListener('load', () => {
+        pageLoaded = true;
+        tryHide();
+      }, { once: true });
+    }
   }
 </script>

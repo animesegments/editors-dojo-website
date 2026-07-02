@@ -1,0 +1,133 @@
+/* Light theme (default) */
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+
+  --bg-ivory: #f6eedc;
+  --bg-paper: #efe4cd;
+  --ink-black: #0b0a08;
+  --charcoal: #1a1713;
+  --gold-muted: #b88a2e;
+  --gold-soft: #d6b15f;
+  --taupe: #8b8172;
+  --shadow-muted: rgba(20, 16, 10, 0.18);
+  --shadow-hover: rgba(20, 16, 10, 0.22);
+
+  --surface-nav: rgba(246, 238, 220, 0.94);
+  --surface-card: #efe4cd;
+  --surface-card-alt: rgba(246, 238, 220, 0.85);
+  --surface-footer: #0b0a08;
+  --surface-cta: #0b0a08;
+  --border-subtle: rgba(184, 138, 46, 0.15);
+  --border-hover: rgba(184, 138, 46, 0.4);
+
+  --btn-primary-bg: #0b0a08;
+  --btn-primary-fg: #f6eedc;
+  --btn-primary-hover: #1a1713;
+  --btn-secondary-fg: #0b0a08;
+
+  --text-on-dark: #f6eedc;
+  --text-on-dark-muted: rgba(246, 238, 220, 0.7);
+
+  --grain-opacity: 0.035;
+  --ambient-strength: 1;
+
+  --logo-seal-core: rgba(252, 247, 238, 0.97);
+  --logo-seal-mid: rgba(246, 238, 220, 0.94);
+  --logo-seal-edge: rgba(239, 228, 205, 0.88);
+  --logo-seal-glow: rgba(246, 238, 220, 0.16);
+  --logo-seal-border: rgba(214, 177, 95, 0.2);
+
+  --border-gold-faint: rgba(184, 138, 46, 0.12);
+  --border-gold: rgba(184, 138, 46, 0.15);
+  --border-gold-mid: rgba(184, 138, 46, 0.25);
+  --border-gold-hover: rgba(184, 138, 46, 0.35);
+  --border-gold-active: rgba(184, 138, 46, 0.4);
+  --border-gold-strong: rgba(184, 138, 46, 0.45);
+  --gold-ring: rgba(214, 177, 95, 0.2);
+  --gold-ring-soft: rgba(214, 177, 95, 0.15);
+  --gold-inset: rgba(214, 177, 95, 0.15);
+  --gold-inset-hover: rgba(214, 177, 95, 0.2);
+  --gold-glow-soft: rgba(214, 177, 95, 0.14);
+  --gold-glow-faint: rgba(214, 177, 95, 0.08);
+  --input-border: rgba(139, 129, 114, 0.35);
+  --vignette: rgba(11, 10, 8, 0.06);
+  --overlay-backdrop: rgba(11, 10, 8, 0.88);
+  --video-surface: #0b0a08;
+  --surface-pill: color-mix(in srgb, var(--bg-paper) 60%, transparent);
+  --surface-section-alt: color-mix(in srgb, var(--bg-paper) 45%, transparent);
+}
+
+/* Dark theme — premium night dojo */
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg-ivory: #12100e;
+  --bg-paper: #1c1915;
+  --ink-black: #f6eedc;
+  --charcoal: #e5dcc8;
+  --gold-muted: #c49a42;
+  --gold-soft: #d6b15f;
+  --taupe: #9a9183;
+  --shadow-muted: rgba(0, 0, 0, 0.35);
+  --shadow-hover: rgba(0, 0, 0, 0.5);
+
+  --surface-nav: rgba(18, 16, 14, 0.94);
+  --surface-card: #1c1915;
+  --surface-card-alt: rgba(28, 25, 21, 0.9);
+  --surface-footer: #0a0908;
+  --surface-cta: #1a1713;
+  --border-subtle: rgba(214, 177, 95, 0.12);
+  --border-hover: rgba(214, 177, 95, 0.32);
+
+  --btn-primary-bg: #f6eedc;
+  --btn-primary-fg: #12100e;
+  --btn-primary-hover: #efe4cd;
+  --btn-secondary-fg: #f6eedc;
+
+  --text-on-dark: #f6eedc;
+  --text-on-dark-muted: rgba(246, 238, 220, 0.65);
+
+  --grain-opacity: 0.05;
+  --ambient-strength: 0.85;
+
+  --logo-seal-glow: rgba(246, 238, 220, 0.14);
+  --logo-seal-border: rgba(214, 177, 95, 0.18);
+
+  --border-gold-faint: rgba(214, 177, 95, 0.1);
+  --border-gold: rgba(214, 177, 95, 0.14);
+  --border-gold-mid: rgba(214, 177, 95, 0.22);
+  --border-gold-hover: rgba(214, 177, 95, 0.3);
+  --border-gold-active: rgba(214, 177, 95, 0.36);
+  --border-gold-strong: rgba(214, 177, 95, 0.42);
+  --gold-ring: rgba(214, 177, 95, 0.18);
+  --gold-ring-soft: rgba(214, 177, 95, 0.12);
+  --gold-inset: rgba(214, 177, 95, 0.12);
+  --gold-inset-hover: rgba(214, 177, 95, 0.18);
+  --gold-glow-soft: rgba(214, 177, 95, 0.1);
+  --gold-glow-faint: rgba(214, 177, 95, 0.05);
+  --input-border: rgba(154, 145, 131, 0.35);
+  --vignette: rgba(0, 0, 0, 0.25);
+  --overlay-backdrop: rgba(10, 9, 8, 0.92);
+  --video-surface: #0a0908;
+  --surface-pill: color-mix(in srgb, var(--bg-paper) 55%, transparent);
+  --surface-section-alt: color-mix(in srgb, var(--bg-paper) 40%, transparent);
+}
+
+html {
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+body,
+.nav,
+.footer,
+.service-card,
+.style-card,
+.video-card--embed,
+.loader-backdrop {
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}

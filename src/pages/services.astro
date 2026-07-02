@@ -2,52 +2,71 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import ServiceCard from '../components/ServiceCard.astro';
+import ServiceStyleCard from '../components/ServiceStyleCard.astro';
 import ContactCTA from '../components/ContactCTA.astro';
+import { editingStyles, services } from '../data/services';
 import { SITE } from '../data/site';
 ---
 
 <BaseLayout
   title="editorsdojo | Services"
-  description="Short-form video editing, cinematic personal brand edits, and free sample edits by editorsdojo."
+  description="Viral Cinematic Reels and White Minimal Animation editing for creators and personal brands by editorsdojo."
   path="/services"
 >
-  <header class="page-header">
+  <header class="page-header" data-animate>
     <div class="container">
       <span class="section-label">Services</span>
-      <h1 class="section-title">What I offer</h1>
+      <h1 class="section-title">What I can help with</h1>
       <p class="section-subtitle">
-        Three focused services for creators and personal brands who want their content to look premium.
+        Two focused editing styles for creators and personal brands who want their videos to look clean, premium, and easy to watch.
       </p>
     </div>
   </header>
 
   <section class="section" style="padding-top: 0;">
     <div class="container">
-      <div class="services-grid">
-        <ServiceCard
-          number="01"
-          title="Short-Form Video Editing"
-          description="Clean, engaging edits for Reels, TikTok, and YouTube Shorts."
-        />
-        <ServiceCard
-          number="02"
-          title="Cinematic Personal Brand Edits"
-          description="Premium storytelling edits for creators, coaches, entrepreneurs, and educators."
-        />
-        <ServiceCard
-          number="03"
-          title="Free Sample Edit"
-          description="Send me a raw clip and I'll create a short sample so you can see the editing style before working together."
-        />
+      <div class="services-grid" data-stagger>
+        {services.map((service, i) => (
+          <ServiceCard
+            number={service.number}
+            title={service.title}
+            shortLine={service.shortLine}
+            description={service.pageDescription ?? service.homeDescription}
+            bestFor={service.bestFor}
+            index={i}
+          />
+        ))}
       </div>
 
-      <div class="pricing-note">
+      <div class="pricing-note" data-animate>
         <strong>Custom pricing</strong> based on video style, volume, and turnaround.
       </div>
 
-      <p class="text-center mt-2">
-        <a href={`mailto:${SITE.email}`} class="btn btn-gold">Email me at {SITE.email}</a>
+      <p class="contact-line text-center mt-2" data-animate>
+        Email me at <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or message me on Instagram <a href={SITE.instagram.editorsdojo} target="_blank" rel="noopener noreferrer">@editorsdojo</a>.
       </p>
+    </div>
+  </section>
+
+  <section class="section section--alt" data-animate>
+    <div class="container">
+      <SectionHeader
+        label="Style Previews"
+        title="See both editing styles"
+        subtitle="Short previews of how each style looks in practice."
+        centered
+      />
+      <div class="divider"><span></span></div>
+      <div class="styles-grid" data-stagger>
+        {editingStyles.map((style, i) => (
+          <ServiceStyleCard
+            title={style.title}
+            description={style.description}
+            vimeoId={style.vimeoId}
+            index={i}
+          />
+        ))}
+      </div>
     </div>
   </section>
 

@@ -1,5 +1,5 @@
 ---
-import { SITE } from '../data/site';
+import Logo from './Logo.astro';
 ---
 
 <section class="hero">
@@ -7,23 +7,19 @@ import { SITE } from '../data/site';
   <div class="container hero-grid">
     <div class="hero-logo-wrap">
       <div class="hero-logo-glow" aria-hidden="true"></div>
-      <div class="hero-logo-backdrop" aria-hidden="true"></div>
-      <img
-        src={SITE.logo}
-        alt="editorsdojo logo"
-        class="hero-logo-img brand-logo"
-        width="280"
-        height="280"
-      />
+      <Logo class="hero-logo-img brand-logo" width={280} height={280} eager />
     </div>
 
     <div class="hero-content">
       <p class="hero-eyebrow">Freelance Short-Form Video Editor</p>
       <h1 class="hero-title">
-        <span class="accent-script">Cinematic</span> Short-Form Edits for Personal Brands That Want to Look Premium
+        Premium short-form edits for personal brands that want to look sharp.
       </h1>
       <p class="hero-subtitle">
-        editorsdojo helps creators, coaches, entrepreneurs, and personal brands transform raw footage into clean, cinematic short-form videos built for attention, clarity, and trust.
+        editorsdojo helps creators, coaches, entrepreneurs, and personal brands turn raw footage into clean short-form videos that feel cinematic, clear, and worth watching.
+      </p>
+      <p class="hero-support">
+        No messy edits. No random effects. Just strong pacing, clean visuals, and a polished style that fits your brand.
       </p>
       <div class="hero-actions">
         <a href="/contact" class="btn btn-primary">Book a Free Sample Edit</a>

@@ -1,0 +1,21 @@
+---
+pid: 15196
+cwd: "C:\Users\Admin\Downloads\website-main"
+command: "cmd /c \"cd /d C:\\Users\\Admin\\Downloads\\website-main && astro dev stop 2>nul & npm run dev\""
+started_at: 2026-07-02T20:11:30.154Z
+running_for_ms: 3405000  
+---
+
+> editorsdojo@0.0.1 dev
+> astro dev
+
+01:41:31 [vite] connected.
+01:41:32 [types] Generated 1ms
+01:41:32 [vite] connected.
+01:41:32 [vite] Re-optimizing dependencies because vite config has changed
+ astro  v7.0.3 ready in 1041 ms
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+01:41:32 watching for file changes...
+01:41:52 [200] /portfolio 34ms
+01:41:55 [200] /portfolio 4ms

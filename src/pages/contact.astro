@@ -6,15 +6,18 @@ import { SITE } from '../data/site';
 
 <BaseLayout
   title="editorsdojo | Contact"
-  description="Contact editorsdojo for a free sample edit. Premium short-form video editing for creators and personal brands."
+  description="Contact editorsdojo for a free sample edit. Short-form video editing for creators and personal brands."
   path="/contact"
 >
   <header class="page-header">
     <div class="container">
       <span class="section-label">Contact</span>
-      <h1 class="section-title">Want your raw video turned into a premium short-form edit?</h1>
+      <h1 class="section-title">Want your raw video turned into a clean short-form edit?</h1>
       <p class="section-subtitle">
-        Fill out the form below or reach out directly. I'll get back to you as soon as I can.
+        Fill out the form or reach out directly.
+      </p>
+      <p class="section-supporting">
+        Tell me what you need edited, what style you like, and what you want the video to do. I'll take a look and get back to you.
       </p>
     </div>
   </header>
@@ -24,7 +27,7 @@ import { SITE } from '../data/site';
       <ContactForm />
 
       <aside class="contact-info">
-        <h3>Direct contact</h3>
+        <h3>Direct Contact</h3>
 
         <div class="contact-info-item">
           <p class="label">Email</p>
@@ -36,8 +39,8 @@ import { SITE } from '../data/site';
           <a href={SITE.instagram.editorsdojo} target="_blank" rel="noopener noreferrer">@editorsdojo</a>
         </div>
 
-        <p style="font-size: 0.88rem; color: var(--taupe); margin-top: 1.5rem;">
-          Prefer email? Reach out directly — no form required.
+        <p class="contact-note">
+          Prefer email? Reach out directly. No form needed.
         </p>
       </aside>
     </div>

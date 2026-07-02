@@ -1,0 +1,45 @@
+<script>
+  (() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
+
+    let ctx = null;
+    let enabled = false;
+
+    function init() {
+      if (!ctx) ctx = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
+      enabled = true;
+    }
+
+    document.addEventListener('click', init, { once: true });
+    document.addEventListener('keydown', init, { once: true });
+
+    function tone(freq: number, duration: number, volume: number, type = 'sine') {
+      if (!enabled || !ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type as OscillatorType;
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      gain.gain.setValueAtTime(volume, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + duration);
+    }
+
+    function playHover() {
+      tone(520, 0.06, 0.035);
+    }
+
+    function playClick() {
+      tone(380, 0.08, 0.05, 'triangle');
+      setTimeout(() => tone(620, 0.1, 0.035), 40);
+    }
+
+    document.querySelectorAll('.btn, .nav-pill, a.link-arrow').forEach((el) => {
+      el.addEventListener('mouseenter', playHover);
+      el.addEventListener('click', playClick);
+    });
+  })();
+</script>

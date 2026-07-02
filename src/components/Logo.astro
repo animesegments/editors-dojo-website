@@ -1,0 +1,33 @@
+---
+import { SITE } from '../data/site';
+
+interface Props {
+  class?: string;
+  width?: number;
+  height?: number;
+  eager?: boolean;
+}
+
+const {
+  class: className = 'brand-logo',
+  width = SITE.logoWidth,
+  height = SITE.logoHeight,
+  eager = false,
+} = Astro.props;
+---
+
+<span class="brand-logo-wrap">
+  <span class="brand-logo-seal" aria-hidden="true"></span>
+  <img
+    src={SITE.logo}
+    alt="editorsdojo logo"
+    class={className}
+    width={width}
+    height={height}
+    loading={eager ? 'eager' : 'lazy'}
+    decoding={eager ? 'sync' : 'async'}
+    fetchpriority={eager ? 'high' : 'auto'}
+    onerror="this.hidden=true;this.parentElement.classList.add('logo-failed')"
+  />
+  <span class="brand-logo-fallback">editorsdojo</span>
+</span>

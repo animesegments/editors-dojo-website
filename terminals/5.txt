@@ -1,0 +1,101 @@
+---
+pid: 3740
+cwd: "C:\Users\Admin\Downloads\website-main"
+command: "cmd /c \"cd /d C:\\Users\\Admin\\Downloads\\website-main && npx astro dev stop 2>nul & npm run dev\""
+started_at: 2026-07-02T20:19:32.776Z
+running_for_ms: 2924999  
+---
+Stopped dev server (pid 12560).
+
+> editorsdojo@0.0.1 dev
+> astro dev
+
+01:49:35 [vite] connected.
+01:49:36 [types] Generated 1ms
+01:49:36 [vite] connected.
+01:49:36 [vite] Re-optimizing dependencies because vite config has changed
+ astro  v7.0.3 ready in 1026 ms
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+01:49:36 watching for file changes...
+01:49:56 [200] / 37ms
+01:49:56 [200] / 3ms
+01:50:16 [200] /portfolio 16ms
+01:50:24 [200] /services 15ms
+01:56:02 [watch] src/layouts/BaseLayout.astro
+01:56:02 [watch] src/components/Nav.astro
+01:56:02 [200] /services 22ms
+01:56:28 [watch] /src/styles/global.css
+01:56:28 [watch] src/components/ThemeToggle.astro
+01:56:29 [watch] src/layouts/BaseLayout.astro
+01:56:29 [watch] /src/styles/global.css
+01:56:29 [200] /services 15ms
+01:56:59 [watch] /src/styles/global.css
+01:56:59 [watch] /src/styles/global.css
+01:56:59 [watch] /src/styles/global.css
+01:57:54 [watch] /src/styles/theme.css
+01:57:54 [200] /services 17ms
+01:58:13 [watch] /src/styles/global.css
+01:58:13 [watch] /src/styles/global.css
+01:58:23 [watch] /src/styles/global.css
+01:58:23 [watch] /src/styles/global.css
+01:58:39 [watch] /src/styles/global.css
+01:58:39 [watch] src/layouts/BaseLayout.astro
+01:58:39 [200] /services 19ms
+01:59:02 [200] / 17ms
+01:59:29 [200] /portfolio 15ms
+01:59:36 [200] / 3ms
+02:00:04 [200] /portfolio 3ms
+02:00:07 [200] /services 4ms
+02:00:18 [200] /portfolio 3ms
+02:00:20 [200] /about 17ms
+02:06:40 [watch] src/components/Nav.astro
+02:06:40 [watch] src/layouts/BaseLayout.astro
+02:06:40 [200] /about 31ms
+02:06:40 [200] /services 32ms
+02:06:54 [watch] /src/styles/global.css
+02:06:54 [watch] /src/styles/theme.css
+02:06:54 [watch] /src/styles/global.css
+02:06:54 [200] /services 17ms
+02:06:54 [200] /about 39ms
+02:11:38 [200] / 13ms
+02:14:04 [200] /about 23ms
+02:14:04 [200] /services 34ms
+02:14:04 [200] / 47ms
+02:14:17 [watch] /src/styles/theme.css
+02:14:17 [watch] /src/styles/global.css
+02:14:17 [watch] /src/styles/global.css
+02:14:24 [watch] /src/styles/global.css
+02:14:55 [200] / 16ms
+02:15:11 [200] /portfolio 25ms
+02:15:15 [200] / 3ms
+02:15:43 [200] /portfolio 3ms
+02:16:31 [watch] /src/styles/theme.css
+02:16:31 [watch] /src/styles/global.css
+02:16:31 [watch] /src/styles/global.css
+02:16:31 [200] /services 29ms
+02:16:31 [200] /portfolio 44ms
+02:16:32 [200] /about 14ms
+02:17:43 [200] /services 3ms
+02:18:02 [200] /about 2ms
+02:18:10 [200] /contact 13ms
+02:18:24 [200] /services 2ms
+02:18:27 [200] /portfolio 2ms
+02:18:57 [200] / 17ms
+02:19:02 [200] /portfolio 2ms
+02:19:05 [200] /services 3ms
+02:19:23 [200] /about 4ms
+02:19:26 [200] /contact 2ms
+02:19:29 [200] / 3ms
+02:20:11 [watch] /src/styles/global.css
+02:21:24 [watch] /src/styles/global.css
+02:21:24 [200] / 19ms
+02:21:24 [200] /about 16ms
+02:21:24 [200] /services 21ms
+02:21:27 [200] /portfolio 13ms
+02:25:25 [watch] /src/styles/global.css
+02:25:35 [200] /portfolio 16ms
+02:26:42 [watch] /src/styles/global.css
+02:26:49 [200] /services 19ms
+02:26:54 [200] /about 13ms
+02:26:56 [200] / 13ms
