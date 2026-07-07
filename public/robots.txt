@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Discourage direct indexing of downloadable asset folders
+Disallow: /assets/
+Disallow: /fonts/

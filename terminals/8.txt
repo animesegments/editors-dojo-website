@@ -1,0 +1,102 @@
+---
+pid: 24956
+cwd: "C:\Users\Admin\Downloads\website-main"
+command: "cmd /c \"cd /d C:\\Users\\Admin\\Downloads\\website-main && npx astro dev stop 2>nul & npm run dev -- --host\""
+started_at: 2026-07-07T19:58:13.431Z
+running_for_ms: 595003   
+---
+Stopped dev server (pid 28796).
+
+> editorsdojo@0.0.1 dev
+> astro dev --host
+
+01:28:17 [vite] connected.
+01:28:18 [types] Generated 1ms
+01:28:18 [vite] connected.
+01:28:18 [vite] Re-optimizing dependencies because vite config has changed
+ astro  v7.0.3 ready in 1477 ms
+┃ Local    http://localhost:4321/
+┃ Network  http://26.205.21.232:4321/
+           http://169.254.83.107:4321/
+           http://192.168.1.7:4321/
+01:28:18 watching for file changes...
+01:28:18 [200] / 42ms
+01:28:19 [200] / 4ms
+01:28:24 [200] / 4ms
+01:28:27 [200] / 3ms
+01:28:30 [200] / 3ms
+01:28:32 [200] /portfolio 20ms
+01:28:34 [200] /services 36ms
+01:28:35 [200] /about 25ms
+01:28:37 [200] /contact 25ms
+01:28:39 [200] /portfolio 4ms
+01:28:41 [200] /services 3ms
+01:28:43 [200] /portfolio 4ms
+01:28:45 [200] / 3ms
+01:28:47 [200] /portfolio 5ms
+01:31:28 [watch] bk3/dist/about/index.html
+01:31:28 [watch] bk3/dist/index.html
+01:31:28 [watch] bk3/dist/contact/index.html
+01:31:28 [watch] bk3/dist/services/index.html
+01:31:28 [watch] bk3/dist/portfolio/index.html
+01:31:28 Configuration file added. Restarting...
+01:31:28 [ERROR] [vite] An error happened during full reload
+Failed to load url astro:server-app.js (resolved id: astro:server-app.js). Does the file exist?
+Error: Failed to load url astro:server-app.js (resolved id: astro:server-app.js). Does the file exist?
+    at loadAndTransform (file:///C:/Users/Admin/Downloads/website-main/node_modules/vite/dist/node/chunks/node.js:19714:31)
+01:31:28 [vite] changed tsconfig file detected: C:/Users/Admin/Downloads/website-main/bk3/tsconfig.json - Clearing cache and forcing full-reload to ensure TypeScript is compiled with updated config values.
+01:31:28 [vite] program reload
+01:31:28 [vite] connected.
+01:31:29 [200] /portfolio 39ms
+01:31:30 [vite] connected.
+01:31:30 [vite] Re-optimizing dependencies because vite config has changed
+01:31:30 [vite] server restarted.
+01:32:07 Configuration file updated. Restarting...
+01:32:07 [vite] connected.
+01:32:08 [vite] connected.
+01:32:08 [vite] server restarted.
+01:32:27 [200] /portfolio 52ms
+01:32:28 [200] /portfolio 4ms
+01:32:30 [watch] src/layouts/BaseLayout.astro
+01:32:30 [watch] src/layouts/BaseLayout.astro
+01:32:30 [200] /portfolio 22ms
+01:32:34 [200] /portfolio 5ms
+01:32:36 [200] /services 19ms
+01:32:38 [200] /about 16ms
+01:32:39 [200] /contact 19ms
+01:32:40 [200] / 17ms
+01:32:46 [200] / 3ms
+01:32:51 [200] / 3ms
+01:32:59 [watch] /src/styles/global.css
+01:32:59 [watch] /src/styles/global.css
+01:33:18 [200] / 32ms
+01:33:42 [watch] /src/styles/global.css
+01:33:42 [watch] src/layouts/BaseLayout.astro
+01:33:42 Configuration file updated. Restarting...
+01:33:42 [vite] connected.
+01:33:43 [200] / 19ms
+01:33:43 [vite] connected.
+01:33:43 [vite] Re-optimizing dependencies because vite config has changed
+01:33:43 [vite] server restarted.
+01:33:44 [200] / 31ms
+01:33:44 [200] / 3ms
+01:34:33 [200] / 6ms
+01:34:35 [200] /portfolio 29ms
+01:34:37 [200] / 5ms
+01:34:38 [200] / 3ms
+01:34:41 [200] / 4ms
+01:34:44 [200] / 3ms
+01:34:47 [200] / 3ms
+01:36:24 [200] / 22ms
+01:36:33 [watch] /src/styles/global.css
+01:36:33 [watch] src/layouts/BaseLayout.astro
+01:36:33 [watch] src/layouts/BaseLayout.astro
+01:36:33 [watch] src/layouts/BaseLayout.astro
+01:36:33 [watch] src/layouts/BaseLayout.astro
+01:36:34 [200] / 21ms
+01:37:04 [200] / 4ms
+01:37:29 [200] /portfolio 23ms
+01:37:31 [200] /services 24ms
+01:37:33 [200] /about 19ms
+01:37:34 [200] /contact 18ms
+01:37:40 [200] / 3ms

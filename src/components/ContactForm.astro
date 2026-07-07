@@ -1,60 +1,270 @@
 ---
 import { SITE } from '../data/site';
+
+const steps = [
+  {
+    id: 'service',
+    question: 'What are you looking for?',
+    hint: 'Pick the option that fits best.',
+    options: [
+      { value: 'Free Sample Edit', label: 'Free Sample Edit', desc: 'Try before you commit' },
+      { value: 'Viral Cinematic Reels', label: 'Viral Cinematic Reels', desc: 'Cinematic hooks & pacing' },
+      { value: 'White Minimal Animation', label: 'White Minimal Animation', desc: 'Clean minimal motion' },
+      { value: 'Not sure yet', label: 'Not sure yet', desc: 'Help me choose' },
+    ],
+  },
+  {
+    id: 'content',
+    question: 'What type of content?',
+    hint: 'Select your main format.',
+    options: [
+      { value: 'Talking head', label: 'Talking head', desc: 'Direct-to-camera' },
+      { value: 'Personal brand reel', label: 'Personal brand reel', desc: 'Brand-focused short-form' },
+      { value: 'Podcast / interview clip', label: 'Podcast / interview clip', desc: 'Clipped from long-form' },
+      { value: 'Educational / value video', label: 'Educational / value video', desc: 'Tips, lessons, insights' },
+      { value: 'Other', label: 'Other', desc: 'Something else' },
+    ],
+  },
+  {
+    id: 'timeline',
+    question: 'When do you need it?',
+    hint: 'Rough timeline is enough.',
+    options: [
+      { value: 'ASAP', label: 'ASAP', desc: 'As soon as possible' },
+      { value: 'This week', label: 'This week', desc: 'Within 7 days' },
+      { value: 'Flexible', label: 'Flexible', desc: 'No strict deadline' },
+      { value: 'Just exploring', label: 'Just exploring', desc: 'Planning ahead' },
+    ],
+  },
+];
 ---
 
-<form class="contact-form" id="contact-form">
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="name" required autocomplete="name" />
+<div class="typeform-wrap">
+  <div class="form-status form-status--success" id="form-success" hidden>
+    <p class="form-status-title">You're in.</p>
+    <p class="form-status-text">Thanks — I'll review your answers and get back to you soon.</p>
   </div>
 
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" required autocomplete="email" />
+  <div class="form-status form-status--error" id="form-error" hidden>
+    <p class="form-status-title">Something went wrong.</p>
+    <p class="form-status-text">Please try again, or message <a href={SITE.instagram.editorsdojo} target="_blank" rel="noopener noreferrer">@editorsdojo</a> on Instagram.</p>
   </div>
 
-  <div class="form-group">
-    <label for="social">Instagram / Website</label>
-    <input type="text" id="social" name="social" placeholder="@yourhandle or yoursite.com" />
+  <div class="typeform" id="typeform" aria-live="polite">
+    <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+    <div class="typeform-header">
+      <div class="typeform-progress" aria-hidden="true">
+        <span class="typeform-progress-bar" id="typeform-progress"></span>
+      </div>
+      <p class="typeform-counter" id="typeform-counter">1 / 4</p>
+    </div>
+
+    <div class="typeform-body" id="typeform-body">
+      {steps.map((step, i) => (
+        <div
+          class:list={['typeform-step', { 'is-active': i === 0 }]}
+          data-step={i + 1}
+          data-field={step.id}
+          hidden={i !== 0}
+        >
+          <span class="typeform-step-label">Step {i + 1}</span>
+          <h2 class="typeform-question">{step.question}</h2>
+          <p class="typeform-hint">{step.hint}</p>
+          <div class="typeform-options" role="listbox" aria-label={step.question}>
+            {step.options.map((opt, j) => (
+              <button
+                type="button"
+                class="typeform-option"
+                data-value={opt.value}
+                data-field={step.id}
+                role="option"
+              >
+                <span class="typeform-option-key" aria-hidden="true">{j + 1}</span>
+                <span class="typeform-option-text">
+                  <span class="typeform-option-label">{opt.label}</span>
+                  <span class="typeform-option-desc">{opt.desc}</span>
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      <div class="typeform-step" data-step="4" data-field="contact" hidden>
+        <span class="typeform-step-label">Last step</span>
+        <h2 class="typeform-question">Where should I reply?</h2>
+        <p class="typeform-hint">Just your name and email — that's all I need.</p>
+
+        <div class="typeform-fields">
+          <div class="form-group">
+            <label for="tf-name">Name</label>
+            <input type="text" id="tf-name" name="name" required autocomplete="name" placeholder="Your name" />
+          </div>
+          <div class="form-group">
+            <label for="tf-email">Email</label>
+            <input type="email" id="tf-email" name="email" required autocomplete="email" placeholder="you@email.com" />
+          </div>
+          <div class="form-group">
+            <label for="tf-social">Instagram <span class="typeform-optional">(optional)</span></label>
+            <input type="text" id="tf-social" name="social" placeholder="@yourhandle" />
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block typeform-submit" id="typeform-submit">
+          <span class="form-submit-label">Send request</span>
+          <span class="form-submit-loading" hidden>Sending…</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="typeform-footer">
+      <button type="button" class="typeform-back" id="typeform-back" hidden>
+        ← Back
+      </button>
+    </div>
   </div>
+</div>
 
-  <div class="form-group">
-    <label for="video-type">What type of video do you need edited?</label>
-    <select id="video-type" name="video-type" required>
-      <option value="">Select a type</option>
-      <option value="Viral Cinematic Reels">Viral Cinematic Reels</option>
-      <option value="White Minimal Animation">White Minimal Animation</option>
-      <option value="Not sure yet">Not sure yet</option>
-      <option value="Other">Other</option>
-    </select>
-  </div>
+<script define:vars={{ formEmail: SITE.email, totalSteps: 4 }}>
+  const typeform = document.getElementById('typeform');
+  const body = document.getElementById('typeform-body');
+  const progressBar = document.getElementById('typeform-progress');
+  const counter = document.getElementById('typeform-counter');
+  const backBtn = document.getElementById('typeform-back');
+  const submitBtn = document.getElementById('typeform-submit');
+  const successEl = document.getElementById('form-success');
+  const errorEl = document.getElementById('form-error');
+  const submitLabel = submitBtn?.querySelector('.form-submit-label');
+  const submitLoading = submitBtn?.querySelector('.form-submit-loading');
 
-  <div class="form-group">
-    <label for="message">Message</label>
-    <textarea id="message" name="message" placeholder="Tell me about your video, timeline, and goal." required></textarea>
-  </div>
+  let currentStep = 1;
+  const answers = {
+    service: '',
+    content: '',
+    timeline: '',
+  };
 
-  <button type="submit" class="btn btn-primary">Request Free Sample Edit</button>
-</form>
+  const steps = body?.querySelectorAll('.typeform-step') ?? [];
 
-<script define:vars={{ email: SITE.email }}>
-  const form = document.getElementById('contact-form');
+  function updateUI() {
+    const pct = (currentStep / totalSteps) * 100;
+    progressBar.style.width = `${pct}%`;
+    counter.textContent = `${currentStep} / ${totalSteps}`;
+    backBtn.hidden = currentStep <= 1;
 
-  form?.addEventListener('submit', (e) => {
-    e.preventDefault();
+    steps.forEach((step) => {
+      const n = Number(step.getAttribute('data-step'));
+      const isActive = n === currentStep;
+      step.hidden = !isActive;
+      step.classList.toggle('is-active', isActive);
+    });
+  }
 
-    const data = new FormData(form);
-    const name = data.get('name');
-    const userEmail = data.get('email');
-    const social = data.get('social');
-    const videoType = data.get('video-type');
-    const message = data.get('message');
+  function goTo(step) {
+    currentStep = Math.max(1, Math.min(totalSteps, step));
+    updateUI();
+    const active = steps[currentStep - 1];
+    active?.querySelector('.typeform-option.is-selected, input')?.focus?.();
+  }
 
-    const subject = encodeURIComponent(`Sample Edit Request from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${userEmail}\nInstagram/Website: ${social || 'N/A'}\nVideo Type: ${videoType}\n\nMessage:\n${message}`
-    );
+  function selectOption(btn) {
+    const field = btn.getAttribute('data-field');
+    const value = btn.getAttribute('data-value');
+    if (!field || !value) return;
 
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    answers[field] = value;
+    btn.closest('.typeform-options')?.querySelectorAll('.typeform-option').forEach((b) => {
+      b.classList.remove('is-selected');
+      b.setAttribute('aria-selected', 'false');
+    });
+    btn.classList.add('is-selected');
+    btn.setAttribute('aria-selected', 'true');
+
+    setTimeout(() => goTo(currentStep + 1), 280);
+  }
+
+  typeform?.querySelectorAll('.typeform-option').forEach((btn) => {
+    btn.addEventListener('click', () => selectOption(btn));
   });
+
+  backBtn?.addEventListener('click', () => goTo(currentStep - 1));
+
+  typeform?.addEventListener('keydown', (e) => {
+    const active = steps[currentStep - 1];
+    if (!active || currentStep === totalSteps) return;
+
+    const options = [...active.querySelectorAll('.typeform-option')];
+    const key = Number(e.key);
+    if (key >= 1 && key <= options.length) {
+      e.preventDefault();
+      selectOption(options[key - 1]);
+    }
+  });
+
+  function setLoading(loading) {
+    if (!submitBtn) return;
+    submitBtn.disabled = loading;
+    submitBtn.setAttribute('aria-busy', String(loading));
+    submitLabel?.toggleAttribute('hidden', loading);
+    submitLoading?.toggleAttribute('hidden', !loading);
+  }
+
+  submitBtn?.addEventListener('click', async () => {
+    successEl?.setAttribute('hidden', '');
+    errorEl?.setAttribute('hidden', '');
+
+    const honey = typeform?.querySelector('.form-honey');
+    if (honey?.value) return;
+
+    const name = document.getElementById('tf-name')?.value.trim();
+    const email = document.getElementById('tf-email')?.value.trim();
+    const social = document.getElementById('tf-social')?.value.trim();
+
+    if (!name || !email) {
+      document.getElementById('tf-name')?.reportValidity?.();
+      document.getElementById('tf-email')?.reportValidity?.();
+      return;
+    }
+
+    setLoading(true);
+
+    const summary = [
+      `Service: ${answers.service}`,
+      `Content: ${answers.content}`,
+      `Timeline: ${answers.timeline}`,
+      social ? `Instagram: ${social}` : '',
+    ].filter(Boolean).join('\n');
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${formEmail}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          'Editing style': answers.service,
+          'Content type': answers.content,
+          Timeline: answers.timeline,
+          Instagram: social || 'N/A',
+          message: summary,
+          _subject: `Sample Edit Request from ${name}`,
+          _captcha: false,
+        }),
+      });
+
+      if (!response.ok) throw new Error('fail');
+
+      typeform.hidden = true;
+      successEl?.removeAttribute('hidden');
+      successEl?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } catch {
+      errorEl?.removeAttribute('hidden');
+      errorEl?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } finally {
+      setLoading(false);
+    }
+  });
+
+  updateUI();
 </script>

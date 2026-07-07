@@ -56,6 +56,10 @@
   --video-surface: #0b0a08;
   --surface-pill: color-mix(in srgb, var(--bg-paper) 60%, transparent);
   --surface-section-alt: color-mix(in srgb, var(--bg-paper) 45%, transparent);
+
+  --dojo-crimson: rgba(122, 32, 42, 0.22);
+  --dojo-crimson-soft: rgba(122, 32, 42, 0.1);
+  --dojo-ink-wash: rgba(11, 10, 8, 0.06);
 }
 
 /* Dark theme — premium night dojo */
@@ -112,6 +116,10 @@
   --video-surface: #0a0908;
   --surface-pill: color-mix(in srgb, var(--bg-paper) 55%, transparent);
   --surface-section-alt: color-mix(in srgb, var(--bg-paper) 40%, transparent);
+
+  --dojo-crimson: rgba(168, 52, 62, 0.28);
+  --dojo-crimson-soft: rgba(168, 52, 62, 0.12);
+  --dojo-ink-wash: rgba(0, 0, 0, 0.35);
 }
 
 html {

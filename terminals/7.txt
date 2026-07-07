@@ -1,0 +1,110 @@
+---
+pid: 22052
+cwd: "C:\Users\Admin\Downloads\website-main"
+command: "cmd /c \"cd /d C:\\Users\\Admin\\Downloads\\website-main && npx astro dev stop 2>nul & npm run dev -- --host\""
+started_at: 2026-07-07T19:14:33.171Z
+running_for_ms: 3214996  
+---
+Stopped dev server (pid 15328).
+
+> editorsdojo@0.0.1 dev
+> astro dev --host
+
+00:44:37 [vite] connected.
+00:44:38 [types] Generated 1ms
+00:44:38 [vite] connected.
+ astro  v7.0.3 ready in 1412 ms
+┃ Local    http://localhost:4321/
+┃ Network  http://26.205.21.232:4321/
+           http://169.254.83.107:4321/
+           http://192.168.1.7:4321/
+00:44:38 watching for file changes...
+00:44:39 [200] /contact 35ms
+00:44:39 [200] /contact 3ms
+00:45:43 [watch] /src/styles/global.css
+00:45:43 [watch] /src/styles/global.css
+00:45:43 [200] /contact 42ms
+00:45:43 [watch] /src/styles/global.css
+00:45:43 [watch] /src/styles/global.css
+00:45:43 [watch] /src/styles/global.css
+00:45:43 [watch] /src/styles/global.css
+00:45:43 [watch] /src/styles/global.css
+00:45:43 [watch] /src/styles/global.css
+00:45:44 [watch] /src/styles/global.css
+00:45:44 [watch] /src/styles/global.css
+00:46:02 [watch] /src/styles/global.css
+00:47:15 [200] /portfolio 26ms
+00:47:18 [200] /portfolio 3ms
+00:47:20 [200] /portfolio 3ms
+00:47:24 [200] /contact 16ms
+00:47:43 [200] /contact 3ms
+00:53:32 [watch] /src/styles/global.css
+00:53:32 [watch] /src/styles/global.css
+00:54:28 [200] /portfolio 27ms
+00:54:32 [200] / 20ms
+00:54:34 [200] / 3ms
+00:54:39 [200] /portfolio 4ms
+00:54:56 [200] /portfolio 3ms
+00:54:57 [200] /services 30ms
+00:55:13 [200] /about 20ms
+00:55:29 [200] /contact 25ms
+00:55:32 [200] /about 3ms
+00:55:34 [200] / 4ms
+01:02:10 [watch] /src/styles/global.css
+01:02:10 [watch] /src/styles/global.css
+01:02:10 [watch] /src/styles/global.css
+01:02:11 [200] / 19ms
+01:02:19 [watch] src/components/AnimatedBackground.astro
+01:02:20 [200] / 17ms
+01:03:26 [200] / 3ms
+01:05:29 [watch] /src/styles/global.css
+01:05:29 [watch] src/components/AnimatedBackground.astro
+01:05:29 [watch] /src/styles/global.css
+01:05:29 [200] / 31ms
+01:05:29 [watch] /src/styles/global.css
+01:06:55 [watch] /src/styles/global.css
+01:06:55 [watch] src/components/AnimatedBackground.astro
+01:06:55 [watch] /src/styles/global.css
+01:06:55 [watch] src/components/AnimatedBackground.astro
+01:06:55 [200] / 40ms
+01:06:55 [200] / 6ms
+01:07:47 [200] /contact 33ms
+01:07:58 [200] /services 27ms
+01:07:59 [200] /portfolio 19ms
+01:08:05 [200] /contact 2ms
+01:08:10 [200] /about 20ms
+01:08:12 [200] /services 3ms
+01:08:14 [200] /portfolio 4ms
+01:08:17 [200] / 2ms
+01:21:27 [watch] src/layouts/BaseLayout.astro
+01:21:27 [watch] src/layouts/BaseLayout.astro
+01:21:27 [watch] src/layouts/BaseLayout.astro
+01:21:27 [200] / 67ms
+01:21:27 [200] / 47ms
+01:21:27 [200] / 13ms
+01:21:32 [200] / 2ms
+01:21:34 [200] /portfolio 23ms
+01:21:59 [watch] /src/styles/global.css
+01:21:59 [watch] /src/styles/global.css
+01:21:59 [watch] /src/styles/global.css
+01:22:42 [200] /portfolio 32ms
+01:22:45 [200] /portfolio 3ms
+01:23:07 [200] /portfolio 3ms
+01:23:14 [200] /portfolio 3ms
+01:23:19 [200] /services 28ms
+01:23:21 [200] / 21ms
+01:23:31 [200] / 2ms
+01:23:40 [200] / 3ms
+01:23:46 [200] / 3ms
+01:23:50 [200] / 3ms
+01:25:01 [watch] /src/styles/global.css
+01:25:01 [watch] /src/styles/global.css
+01:25:01 [200] / 61ms
+01:25:06 [200] / 2ms
+01:25:19 [200] / 2ms
+01:25:31 [200] / 3ms
+01:27:23 [watch] /src/styles/global.css
+01:27:23 [watch] /src/styles/global.css
+01:27:24 [200] / 37ms
+01:27:31 [watch] /src/styles/global.css
+01:27:44 [200] / 23ms

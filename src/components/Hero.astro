@@ -2,27 +2,70 @@
 import Logo from './Logo.astro';
 ---
 
-<section class="hero">
-  <div class="hero-bg-accent" aria-hidden="true"></div>
-  <div class="container hero-grid">
-    <div class="hero-logo-wrap">
-      <div class="hero-logo-glow" aria-hidden="true"></div>
+<section class="hero hero--dojo">
+  <div class="hero-atmosphere" aria-hidden="true">
+    <div class="hero-mist hero-mist--1"></div>
+    <div class="hero-mist hero-mist--2"></div>
+    <div class="hero-ink-wash"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-wind hero-wind--1"></div>
+    <div class="hero-wind hero-wind--2"></div>
+    <div class="hero-frame">
+      <span class="hero-frame-line hero-frame-line--top"></span>
+      <span class="hero-frame-line hero-frame-line--bottom"></span>
+      <span class="hero-frame-corner hero-frame-corner--tl"></span>
+      <span class="hero-frame-corner hero-frame-corner--tr"></span>
+      <span class="hero-frame-corner hero-frame-corner--bl"></span>
+      <span class="hero-frame-corner hero-frame-corner--br"></span>
+    </div>
+    <div class="hero-petals">
+      <span class="hero-petal"></span>
+      <span class="hero-petal"></span>
+      <span class="hero-petal"></span>
+      <span class="hero-petal"></span>
+      <span class="hero-petal"></span>
+    </div>
+  </div>
+
+  <div class="container hero-stage">
+    <p class="hero-kanji-vertical" aria-hidden="true">編集道場</p>
+
+    <div class="hero-emblem">
+      <div class="hero-emblem-ring hero-emblem-ring--outer" aria-hidden="true"></div>
+      <div class="hero-emblem-ring" aria-hidden="true"></div>
+      <div class="hero-emblem-glow" aria-hidden="true"></div>
       <Logo class="hero-logo-img brand-logo" width={280} height={280} eager />
     </div>
 
-    <div class="hero-content">
-      <p class="hero-eyebrow">Freelance Short-Form Video Editor</p>
+    <div class="hero-intro-copy">
+      <p class="hero-eyebrow">
+        <span class="hero-eyebrow-mark" aria-hidden="true">刀</span>
+        <span class="hero-eyebrow-text">Freelance Short-Form Video Editor</span>
+      </p>
+
       <h1 class="hero-title">
-        Premium short-form edits for personal brands that want to look sharp.
+        <span class="hero-title-line hero-title-line--1">Train the cut.</span>
+        <span class="hero-title-line hero-title-line--2">Master the reel.</span>
       </h1>
+
+      <div class="hero-brush-divider" aria-hidden="true">
+        <span class="hero-brush-stroke"></span>
+        <span class="hero-brush-seal">編</span>
+        <span class="hero-brush-stroke"></span>
+      </div>
+
       <p class="hero-subtitle">
-        editorsdojo helps creators, coaches, entrepreneurs, and personal brands turn raw footage into clean short-form videos that feel cinematic, clear, and worth watching.
+        In the editorsdojo, raw footage becomes disciplined short-form edits — cinematic, clear, and built to hold attention.
       </p>
+
+      <p class="hero-mantra">edit with discipline.</p>
+
       <p class="hero-support">
-        No messy edits. No random effects. Just strong pacing, clean visuals, and a polished style that fits your brand.
+        For creators, coaches, and personal brands who want premium pacing, clean visuals, and edits that feel intentional — not rushed.
       </p>
+
       <div class="hero-actions">
-        <a href="/contact" class="btn btn-primary">Book a Free Sample Edit</a>
+        <a href="/contact" class="btn btn-primary hero-btn-primary">Book a Free Sample Edit</a>
         <a href="/portfolio" class="btn btn-secondary">View Portfolio</a>
       </div>
     </div>

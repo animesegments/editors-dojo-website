@@ -1,5 +1,6 @@
 ---
 import { SITE } from '../data/site';
+import { logoUrl } from '../utils/assets';
 
 interface Props {
   class?: string;
@@ -14,20 +15,24 @@ const {
   height = SITE.logoHeight,
   eager = false,
 } = Astro.props;
+
+const src = logoUrl(width);
 ---
 
-<span class="brand-logo-wrap">
+<span class="brand-logo-wrap asset-protected" data-asset-protected>
   <span class="brand-logo-seal" aria-hidden="true"></span>
   <img
-    src={SITE.logo}
+    src={src}
     alt="editorsdojo logo"
-    class={className}
+    class:list={[className, 'asset-protected__media']}
     width={width}
     height={height}
     loading={eager ? 'eager' : 'lazy'}
     decoding={eager ? 'sync' : 'async'}
     fetchpriority={eager ? 'high' : 'auto'}
+    draggable="false"
     onerror="this.hidden=true;this.parentElement.classList.add('logo-failed')"
   />
+  <span class="asset-protected__shield" aria-hidden="true"></span>
   <span class="brand-logo-fallback">editorsdojo</span>
 </span>

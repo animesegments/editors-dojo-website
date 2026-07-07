@@ -1,0 +1,26 @@
+<script>
+  const protectedRoots = document.querySelectorAll('[data-asset-protected]');
+
+  protectedRoots.forEach((root) => {
+    root.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+    });
+
+    root.addEventListener('dragstart', (event) => {
+      event.preventDefault();
+    });
+
+    root.querySelectorAll('img').forEach((image) => {
+      image.setAttribute('draggable', 'false');
+    });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 's') {
+      const active = document.activeElement;
+      if (active?.closest('[data-asset-protected]')) {
+        event.preventDefault();
+      }
+    }
+  });
+</script>

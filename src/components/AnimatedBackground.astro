@@ -11,5 +11,98 @@
     <span class="ambient-crop ambient-crop--br"></span>
   </div>
   <div class="ambient-sweep"></div>
+  <div class="ambient-ink" aria-hidden="true"></div>
+  <div class="ambient-lantern ambient-lantern--halo" id="ambient-lantern-halo"></div>
+  <div class="ambient-lantern ambient-lantern--warmth" id="ambient-lantern-warmth"></div>
   <div class="ambient-vignette"></div>
 </div>
+
+<script>
+  const halo = document.getElementById('ambient-lantern-halo');
+  const warmth = document.getElementById('ambient-lantern-warmth');
+
+  if (halo && warmth) {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+
+    if (!reducedMotion && !coarsePointer) {
+      let rafId = 0;
+      let presence = 0;
+      let initialized = false;
+
+      const mouse = { x: undefined as number | undefined, y: undefined as number | undefined };
+      const haloPos = { x: 0, y: 0 };
+      const warmthPos = { x: 0, y: 0 };
+
+      function themeFactor() {
+        return document.documentElement.getAttribute('data-theme') === 'dark' ? 0.78 : 1;
+      }
+
+      function place(node: HTMLElement, x: number, y: number, scale = 1) {
+        node.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${scale})`;
+      }
+
+      function tick() {
+        const factor = themeFactor();
+
+        if (mouse.x !== undefined && mouse.y !== undefined) {
+          warmthPos.x += (mouse.x - warmthPos.x) * 0.11;
+          warmthPos.y += (mouse.y - warmthPos.y) * 0.11;
+          haloPos.x += (mouse.x - haloPos.x) * 0.045;
+          haloPos.y += (mouse.y - haloPos.y) * 0.045;
+          presence += (1 - presence) * 0.07;
+        } else {
+          presence *= 0.92;
+        }
+
+        const breath = 1 + Math.sin(performance.now() * 0.0007) * 0.018;
+        const alpha = presence * factor;
+
+        place(halo, haloPos.x, haloPos.y, breath);
+        place(warmth, warmthPos.x, warmthPos.y, 1);
+        halo.style.opacity = String(alpha * 0.62);
+        warmth.style.opacity = String(alpha * 0.74);
+
+        const moving =
+          mouse.x !== undefined &&
+          mouse.y !== undefined &&
+          (Math.abs(haloPos.x - mouse.x) > 0.5 || Math.abs(haloPos.y - mouse.y) > 0.5);
+
+        if (mouse.x !== undefined || moving || presence > 0.015) {
+          rafId = requestAnimationFrame(tick);
+        } else {
+          rafId = 0;
+          halo.style.opacity = '0';
+          warmth.style.opacity = '0';
+        }
+      }
+
+      function start() {
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      }
+
+      function onMove(e: MouseEvent) {
+        if (!initialized) {
+          haloPos.x = e.clientX;
+          haloPos.y = e.clientY;
+          warmthPos.x = e.clientX;
+          warmthPos.y = e.clientY;
+          initialized = true;
+        }
+
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        start();
+      }
+
+      function onLeave() {
+        mouse.x = undefined;
+        mouse.y = undefined;
+        start();
+      }
+
+      window.addEventListener('mousemove', onMove, { passive: true });
+      document.documentElement.addEventListener('mouseleave', onLeave);
+    }
+  }
+</script>
