@@ -1,0 +1,227 @@
+---
+import LinksLayout from '../layouts/LinksLayout.astro';
+import LinkIcon from '../components/LinkIcon.astro';
+import { SITE } from '../data/site';
+import { linksProfile, mainLinks, achievementLinks } from '../data/links';
+
+const PROFILE_LOGO =
+  'https://res.cloudinary.com/dxf39wseg/image/upload/v1783024510/Copy_of_editorsdojo_logo_uttueh.png?v=2';
+
+const socialLinks = mainLinks.filter((link) => link.social);
+const actionLinks = mainLinks.filter((link) => !link.social);
+const shareUrl = SITE.linksUrl;
+---
+
+<LinksLayout>
+  <div class="links-shell" id="links-shell">
+    <header class="links-hero">
+      <div class="logo-stage links-enter links-enter--1">
+        <span class="logo-stage__glow" aria-hidden="true"></span>
+        <span class="logo-stage__aura" aria-hidden="true"></span>
+        <div class="logo-wrapper">
+          <img
+            src={PROFILE_LOGO}
+            alt="editorsdojo logo"
+            class="profile-logo"
+            width={512}
+            height={512}
+            loading="eager"
+            decoding="sync"
+            fetchpriority="high"
+            draggable="false"
+          />
+        </div>
+      </div>
+      <h1 class="links-hero__name links-enter links-enter--2">{linksProfile.name}</h1>
+      <p class="links-hero__role links-enter links-enter--3">{linksProfile.role}</p>
+      <span class="links-hero__divider links-enter links-enter--3b" aria-hidden="true"></span>
+      <a class="links-hero__email links-enter links-enter--4" href={`mailto:${SITE.email}`}>{SITE.email}</a>
+    </header>
+
+    {socialLinks.length > 0 && (
+      <nav class="links-social links-enter links-enter--5" aria-label="Social profiles">
+        <ul class="links-social__list">
+          {socialLinks.map((link, index) => (
+            <li class="links-enter links-enter--social" style={`--social-i: ${index}`}>
+              <a
+                href={link.href}
+                class="links-social__btn links-magnetic"
+                aria-label={`${link.label} — ${link.subtext}`}
+                {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
+                <LinkIcon name={link.icon} variant="social" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    )}
+
+    {actionLinks.length > 0 && (
+      <section class="links-section links-enter links-enter--6" aria-label="Links">
+        <ul class="links-list">
+          {actionLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="links-item links-card-tilt links-magnetic"
+                {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              >
+                <span class="links-item__icon-wrap">
+                  <LinkIcon name={link.icon} variant="inline" />
+                </span>
+                <span class="links-item__copy">
+                  <span class="links-item__title">{link.label}</span>
+                  <span class="links-item__sub">{link.subtext}</span>
+                </span>
+                <span class="links-item__arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {achievementLinks.length > 0 && (
+      <section class="links-section links-enter links-enter--7" aria-labelledby="links-achievements-heading">
+        <h2 id="links-achievements-heading" class="links-section__label links-enter links-enter--7b">Achievements</h2>
+        <span class="links-section__divider links-enter links-enter--7b" aria-hidden="true"></span>
+        <ul class="links-list links-enter links-enter--8">
+          {achievementLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="links-item links-item--achievement links-card-tilt links-magnetic"
+                aria-label={`${link.label} — ${link.subtext}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="links-item__icon-wrap links-item__icon-wrap--ig">
+                  <LinkIcon name={link.icon} variant="social" />
+                </span>
+                <span class="links-item__copy">
+                  <span class="links-item__title">{link.label}</span>
+                  <span class="links-item__sub">{link.subtext}</span>
+                </span>
+                <span class="links-item__arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <footer class="links-footer links-enter links-enter--9">
+      <button type="button" class="links-footer__share links-magnetic" id="links-share" aria-label="Share this page">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 5v10" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+          <path d="M8.5 8.5 12 5l3.5 3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M6 14.5v3.5A2 2 0 0 0 8 20h8a2 2 0 0 0 2-2v-3.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+        </svg>
+        Share
+      </button>
+      <a class="links-footer__url" href={SITE.linksUrl}>{SITE.linksUrl.replace('https://', '')}</a>
+      <p class="links-footer__copy">© {SITE.name}</p>
+    </footer>
+  </div>
+
+  <div class="links-toast" id="links-toast" role="status" aria-live="polite" hidden>Link copied</div>
+
+  <script>
+    const shell = document.getElementById('links-shell');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+    const isDesktopMotion = !reducedMotion && !coarsePointer;
+
+    requestAnimationFrame(() => {
+      shell?.classList.add('is-loaded');
+      document.body.classList.add('links-ready');
+    });
+
+    if (isDesktopMotion) {
+      const magneticStrength = 0.14;
+      const magneticMax = 6;
+
+      const clampMag = (value: number) =>
+        Math.max(-magneticMax, Math.min(magneticMax, value));
+
+      document.querySelectorAll('.links-magnetic').forEach((node) => {
+        const el = node as HTMLElement;
+
+        el.addEventListener('mousemove', (event) => {
+          const rect = el.getBoundingClientRect();
+          const x = event.clientX - rect.left - rect.width / 2;
+          const y = event.clientY - rect.top - rect.height / 2;
+          el.style.setProperty('--mag-x', `${clampMag(x * magneticStrength)}px`);
+          el.style.setProperty('--mag-y', `${clampMag(y * magneticStrength)}px`);
+        }, { passive: true });
+
+        el.addEventListener('mouseleave', () => {
+          el.style.setProperty('--mag-x', '0px');
+          el.style.setProperty('--mag-y', '0px');
+        });
+      });
+
+      document.querySelectorAll('.links-card-tilt').forEach((node) => {
+        const card = node as HTMLElement;
+
+        card.addEventListener('mousemove', (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width - 0.5;
+          const y = (event.clientY - rect.top) / rect.height - 0.5;
+          card.style.setProperty('--tilt-x', `${-y * 3}deg`);
+          card.style.setProperty('--tilt-y', `${x * 3}deg`);
+          card.style.setProperty('--mouse-x', `${((event.clientX - rect.left) / rect.width) * 100}%`);
+          card.style.setProperty('--mouse-y', `${((event.clientY - rect.top) / rect.height) * 100}%`);
+        }, { passive: true });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.setProperty('--tilt-x', '0deg');
+          card.style.setProperty('--tilt-y', '0deg');
+        });
+      });
+    }
+
+    function showToast(message: string) {
+      const toast = document.getElementById('links-toast');
+      if (!toast) return;
+      toast.textContent = message;
+      toast.hidden = false;
+      toast.classList.add('is-visible');
+      window.setTimeout(() => {
+        toast.classList.remove('is-visible');
+        window.setTimeout(() => {
+          toast.hidden = true;
+        }, 320);
+      }, 2000);
+    }
+
+    window.showLinksToast = showToast;
+  </script>
+
+  <script define:vars={{ shareUrl, shareTitle: `${SITE.name} | Links` }}>
+    const shareButton = document.getElementById('links-share');
+
+    shareButton?.addEventListener('click', async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({ title: shareTitle, url: shareUrl });
+          return;
+        } catch (error) {
+          if (error?.name === 'AbortError') return;
+        }
+      }
+
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        shareButton.setAttribute('aria-label', 'Link copied');
+        if (typeof window.showLinksToast === 'function') {
+          window.showLinksToast('Link copied');
+        }
+        setTimeout(() => shareButton.setAttribute('aria-label', 'Share this page'), 1800);
+      } catch {
+        window.prompt('Copy this link:', shareUrl);
+      }
+    });
+  </script>
+</LinksLayout>

@@ -11,6 +11,11 @@ export const SITE = {
     editorsdojo: 'https://www.instagram.com/editorsdojo/',
     animeSegments: 'https://www.instagram.com/anime.segments/',
   },
+  social: {
+    x: 'https://x.com/editorsdojo',
+  },
+  linksPath: '/links',
+  linksUrl: 'https://links.editorsdojo.site',
   title: 'editorsdojo | Freelance Short-Form Video Editor',
   description:
     'Clean short-form video editing for creators, coaches, entrepreneurs, and personal brands. Viral Cinematic Reels and White Minimal Animation by editorsdojo.',

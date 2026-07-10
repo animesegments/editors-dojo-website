@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { SITE } from '../data/site';
 import { logoUrl } from '../utils/assets';
 
@@ -21,7 +22,7 @@ const src = logoUrl(width);
 
 <span class="brand-logo-wrap asset-protected" data-asset-protected>
   <span class="brand-logo-seal" aria-hidden="true"></span>
-  <img
+  <Image
     src={src}
     alt="editorsdojo logo"
     class:list={[className, 'asset-protected__media']}

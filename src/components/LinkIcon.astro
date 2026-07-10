@@ -1,0 +1,58 @@
+---
+interface Props {
+  name: 'instagram' | 'x' | 'portfolio' | 'email';
+  variant?: 'card' | 'social' | 'inline';
+}
+
+const { name, variant = 'card' } = Astro.props;
+---
+
+<span
+  class:list={[
+    'links-card__icon',
+    { 'links-card__icon--social': variant === 'social' },
+    { 'links-card__icon--inline': variant === 'inline' },
+  ]}
+  aria-hidden="true"
+>
+  {name === 'instagram' && variant === 'social' && (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="links-ig-social" x1="3" y1="21" x2="21" y2="3" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#F58529" />
+          <stop offset="0.35" stop-color="#DD2A7B" />
+          <stop offset="0.7" stop-color="#8134AF" />
+          <stop offset="1" stop-color="#515BD4" />
+        </linearGradient>
+      </defs>
+      <rect x="3" y="3" width="18" height="18" rx="5" stroke="url(#links-ig-social)" stroke-width="1.7" />
+      <circle cx="12" cy="12" r="4.2" stroke="url(#links-ig-social)" stroke-width="1.7" />
+      <circle cx="17.4" cy="6.6" r="1.1" fill="url(#links-ig-social)" />
+    </svg>
+  )}
+  {name === 'instagram' && variant !== 'social' && (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6" />
+      <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.6" />
+      <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" />
+    </svg>
+  )}
+  {name === 'x' && (
+    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16.6 3h3.1l-6.8 7.8L21 21h-6.2l-4.8-6.3L4.2 21H1.1l7.3-8.3L3 3h6.3l4.4 5.8L16.6 3zm-1.1 16.2h1.7L7.8 4.7H6l9.5 14.5z" />
+    </svg>
+  )}
+  {name === 'portfolio' && (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="3" y="5" width="18" height="13" rx="2.2" stroke="currentColor" stroke-width="1.6" />
+      <path d="M8 10.5l2.8 2.3L15.5 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M3 9.5l4.2-2.8a1.2 1.2 0 0 1 1.3 0L12 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+    </svg>
+  )}
+  {name === 'email' && (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="3" y="5.5" width="18" height="13" rx="2.2" stroke="currentColor" stroke-width="1.6" />
+      <path d="M4.5 7.5 12 13l7.5-5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  )}
+</span>

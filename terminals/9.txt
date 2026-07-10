@@ -1,0 +1,11 @@
+---
+pid: 12592
+cwd: "C:\Users\Admin\Downloads\website-main"
+command: "cmd /c \"cd /d C:\\Users\\Admin\\Downloads\\website-main && npx astro preview --port 4321\""
+started_at: 2026-07-10T08:31:01.320Z
+running_for_ms: 1435003  
+---
+Port 4321 is in use, trying another one...
+ astro  v7.0.3 ready in 25 ms
+┃ Local    http://localhost:4322/
+┃ Network  use --host to expose

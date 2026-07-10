@@ -33,14 +33,11 @@ const favicon = faviconUrl();
     <script is:inline>
       (function () {
         var key = 'editorsdojo-theme';
-        var theme = 'light';
+        var theme = 'dark';
         try {
           var saved = localStorage.getItem(key);
           if (saved === 'light' || saved === 'dark') theme = saved;
-          else if (window.matchMedia('(prefers-color-scheme: dark)').matches) theme = 'dark';
-        } catch (e) {
-          if (window.matchMedia('(prefers-color-scheme: dark)').matches) theme = 'dark';
-        }
+        } catch (e) { /* noop */ }
         document.documentElement.setAttribute('data-theme', theme);
       })();
     </script>
@@ -79,10 +76,6 @@ const favicon = faviconUrl();
     <script>
       const THEME_KEY = 'editorsdojo-theme';
 
-      function getSystemTheme() {
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      }
-
       function getStoredTheme() {
         try {
           const saved = localStorage.getItem(THEME_KEY);
@@ -110,7 +103,7 @@ const favicon = faviconUrl();
         }
       }
 
-      applyTheme(getStoredTheme() ?? getSystemTheme());
+      applyTheme(getStoredTheme() ?? 'dark');
 
       function toggleTheme() {
         const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
@@ -127,8 +120,8 @@ const favicon = faviconUrl();
         });
       });
 
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (getStoredTheme() === null) applyTheme(e.matches ? 'dark' : 'light');
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        if (getStoredTheme() === null) applyTheme('dark');
       });
     </script>
     <script>
