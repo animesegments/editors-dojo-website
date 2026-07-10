@@ -11,15 +11,15 @@ function shouldPassthrough(pathname: string) {
 }
 
 export const config = {
-  matcher: [
-    {
-      source: '/(.*)',
-      has: [{ type: 'host', value: 'links.editorsdojo.site' }],
-    },
-  ],
+  matcher: ['/', '/((?!_astro|assets|fonts|favicon\\.ico).*)'],
 };
 
 export default function middleware(request: Request) {
+  const host = request.headers.get('host')?.split(':')[0];
+  if (host !== 'links.editorsdojo.site') {
+    return;
+  }
+
   const url = new URL(request.url);
 
   if (shouldPassthrough(url.pathname)) {
