@@ -104,6 +104,7 @@ body.links-body::after {
   overflow: hidden;
   opacity: 0;
   transition: opacity 0.9s var(--ease-premium);
+  contain: strict;
 }
 
 body.links-ready .links-ambient {
@@ -113,35 +114,52 @@ body.links-ready .links-ambient {
 .links-ambient__orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(72px);
-  will-change: transform;
+  transform: translateZ(0);
 }
 
 .links-ambient__orb--gold {
-  width: min(65vw, 520px);
-  height: min(65vw, 520px);
-  top: -12%;
-  left: -16%;
-  background: radial-gradient(circle, rgba(196, 154, 66, 0.28) 0%, rgba(196, 154, 66, 0.08) 42%, transparent 72%);
+  width: min(72vw, 580px);
+  height: min(72vw, 580px);
+  top: -14%;
+  left: -18%;
+  background: radial-gradient(
+    circle,
+    rgba(196, 154, 66, 0.3) 0%,
+    rgba(196, 154, 66, 0.14) 28%,
+    rgba(196, 154, 66, 0.05) 52%,
+    transparent 74%
+  );
   animation: orbDriftGold 20s ease-in-out infinite alternate;
 }
 
 .links-ambient__orb--taupe {
-  width: min(58vw, 460px);
-  height: min(58vw, 460px);
-  bottom: -14%;
-  right: -18%;
-  background: radial-gradient(circle, rgba(90, 78, 62, 0.32) 0%, rgba(90, 78, 62, 0.1) 40%, transparent 72%);
+  width: min(64vw, 500px);
+  height: min(64vw, 500px);
+  bottom: -16%;
+  right: -20%;
+  background: radial-gradient(
+    circle,
+    rgba(90, 78, 62, 0.34) 0%,
+    rgba(90, 78, 62, 0.16) 30%,
+    rgba(90, 78, 62, 0.05) 54%,
+    transparent 76%
+  );
   animation: orbDriftTaupe 26s ease-in-out infinite alternate;
 }
 
 .links-ambient__orb--ivory {
-  width: min(72vw, 560px);
-  height: min(48vw, 380px);
-  top: 24%;
+  width: min(78vw, 600px);
+  height: min(52vw, 400px);
+  top: 22%;
   left: 50%;
   transform: translateX(-50%);
-  background: radial-gradient(ellipse, rgba(246, 238, 220, 0.14) 0%, rgba(246, 238, 220, 0.04) 45%, transparent 70%);
+  background: radial-gradient(
+    ellipse,
+    rgba(246, 238, 220, 0.16) 0%,
+    rgba(246, 238, 220, 0.07) 32%,
+    rgba(246, 238, 220, 0.02) 56%,
+    transparent 74%
+  );
   animation: orbDriftIvory 18s ease-in-out infinite alternate;
 }
 
@@ -156,15 +174,20 @@ body.links-ready .links-ambient {
   position: fixed;
   top: 0;
   left: 0;
-  width: 380px;
-  height: 380px;
+  width: 420px;
+  height: 420px;
   border-radius: 999px;
   pointer-events: none;
   z-index: 0;
   opacity: 0;
-  background: radial-gradient(circle, rgba(214, 177, 95, 0.2) 0%, rgba(246, 238, 220, 0.08) 35%, transparent 68%);
-  filter: blur(12px);
-  will-change: transform;
+  background: radial-gradient(
+    circle,
+    rgba(214, 177, 95, 0.18) 0%,
+    rgba(246, 238, 220, 0.08) 28%,
+    rgba(246, 238, 220, 0.03) 48%,
+    transparent 72%
+  );
+  transform: translate3d(-9999px, -9999px, 0) translate(-50%, -50%);
   transition: opacity 0.35s ease;
 }
 
@@ -204,13 +227,53 @@ body.links-ready .links-ambient {
 }
 
 @media (max-width: 768px) {
-  .links-particle:nth-child(n + 16) {
+  .links-particle:nth-child(n + 11) {
     display: none;
   }
 
   .links-ambient__orb {
-    filter: blur(56px);
     animation-duration: 32s;
+  }
+
+  body.links-body::before,
+  body.links-body::after {
+    animation: none;
+  }
+
+  .links-particle {
+    box-shadow: none;
+  }
+
+  .links-enter {
+    filter: none;
+  }
+
+  .links-shell.is-loaded .links-enter {
+    animation-name: enterUpLite;
+  }
+
+  .links-item {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 239, 203, 0.1),
+      rgba(24, 20, 16, 0.82)
+    );
+  }
+
+  .links-item:hover {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 239, 203, 0.14),
+      rgba(34, 30, 26, 0.88)
+    );
+  }
+
+  .links-social__list,
+  .links-social__btn {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 }
 
@@ -598,8 +661,8 @@ body.links-ready .links-vignette {
   text-decoration: none;
   color: inherit;
   overflow: hidden;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   transform: translate3d(var(--mag-x), var(--mag-y), 0) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
   transform-style: preserve-3d;
   perspective: 800px;
@@ -879,6 +942,31 @@ body.links-ready .links-vignette {
     transform: translateY(0);
     filter: blur(0);
   }
+}
+
+@keyframes enterUpLite {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body.links-paused .links-ambient__orb,
+body.links-paused .links-particle,
+body.links-paused .links-grain,
+body.links-paused .logo-stage,
+body.links-paused .logo-wrapper,
+body.links-paused .logo-stage__glow,
+body.links-paused .logo-stage__aura,
+body.links-paused .logo-wrapper::before,
+body.links-paused .logo-wrapper::after,
+body.links-paused.links-body::before,
+body.links-paused.links-body::after {
+  animation-play-state: paused;
 }
 
 @keyframes bodyGlowShift {

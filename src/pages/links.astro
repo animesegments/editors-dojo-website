@@ -141,46 +141,94 @@ const shareUrl = SITE.linksUrl;
     if (isDesktopMotion) {
       const magneticStrength = 0.14;
       const magneticMax = 6;
+      let pointerFrame = 0;
+      let activeMagnetic: HTMLElement | null = null;
+      let activeCard: HTMLElement | null = null;
+      let lastX = 0;
+      let lastY = 0;
 
       const clampMag = (value: number) =>
         Math.max(-magneticMax, Math.min(magneticMax, value));
 
-      document.querySelectorAll('.links-magnetic').forEach((node) => {
-        const el = node as HTMLElement;
+      const applyPointerFx = () => {
+        pointerFrame = 0;
 
-        el.addEventListener('mousemove', (event) => {
-          const rect = el.getBoundingClientRect();
-          const x = event.clientX - rect.left - rect.width / 2;
-          const y = event.clientY - rect.top - rect.height / 2;
-          el.style.setProperty('--mag-x', `${clampMag(x * magneticStrength)}px`);
-          el.style.setProperty('--mag-y', `${clampMag(y * magneticStrength)}px`);
+        if (activeMagnetic) {
+          const rect = activeMagnetic._linksRect;
+          if (rect) {
+            const x = lastX - rect.left - rect.width / 2;
+            const y = lastY - rect.top - rect.height / 2;
+            activeMagnetic.style.setProperty('--mag-x', `${clampMag(x * magneticStrength)}px`);
+            activeMagnetic.style.setProperty('--mag-y', `${clampMag(y * magneticStrength)}px`);
+          }
+        }
+
+        if (activeCard) {
+          const rect = activeCard._linksRect;
+          if (rect) {
+            const x = (lastX - rect.left) / rect.width - 0.5;
+            const y = (lastY - rect.top) / rect.height - 0.5;
+            activeCard.style.setProperty('--tilt-x', `${-y * 3}deg`);
+            activeCard.style.setProperty('--tilt-y', `${x * 3}deg`);
+            activeCard.style.setProperty('--mouse-x', `${((lastX - rect.left) / rect.width) * 100}%`);
+            activeCard.style.setProperty('--mouse-y', `${((lastY - rect.top) / rect.height) * 100}%`);
+          }
+        }
+      };
+
+      const queuePointerFx = (event: MouseEvent) => {
+        lastX = event.clientX;
+        lastY = event.clientY;
+        if (!pointerFrame) {
+          pointerFrame = requestAnimationFrame(applyPointerFx);
+        }
+      };
+
+      document.querySelectorAll('.links-magnetic').forEach((node) => {
+        const el = node as HTMLElement & { _linksRect?: DOMRect };
+
+        el.addEventListener('mouseenter', () => {
+          el._linksRect = el.getBoundingClientRect();
+          activeMagnetic = el;
         }, { passive: true });
 
+        el.addEventListener('mousemove', queuePointerFx, { passive: true });
+
         el.addEventListener('mouseleave', () => {
+          if (activeMagnetic === el) activeMagnetic = null;
+          el._linksRect = undefined;
           el.style.setProperty('--mag-x', '0px');
           el.style.setProperty('--mag-y', '0px');
         });
       });
 
       document.querySelectorAll('.links-card-tilt').forEach((node) => {
-        const card = node as HTMLElement;
+        const card = node as HTMLElement & { _linksRect?: DOMRect };
 
-        card.addEventListener('mousemove', (event) => {
-          const rect = card.getBoundingClientRect();
-          const x = (event.clientX - rect.left) / rect.width - 0.5;
-          const y = (event.clientY - rect.top) / rect.height - 0.5;
-          card.style.setProperty('--tilt-x', `${-y * 3}deg`);
-          card.style.setProperty('--tilt-y', `${x * 3}deg`);
-          card.style.setProperty('--mouse-x', `${((event.clientX - rect.left) / rect.width) * 100}%`);
-          card.style.setProperty('--mouse-y', `${((event.clientY - rect.top) / rect.height) * 100}%`);
+        card.addEventListener('mouseenter', () => {
+          card._linksRect = card.getBoundingClientRect();
+          activeCard = card;
         }, { passive: true });
 
+        card.addEventListener('mousemove', queuePointerFx, { passive: true });
+
         card.addEventListener('mouseleave', () => {
+          if (activeCard === card) activeCard = null;
+          card._linksRect = undefined;
           card.style.setProperty('--tilt-x', '0deg');
           card.style.setProperty('--tilt-y', '0deg');
         });
       });
+
+      window.addEventListener('resize', () => {
+        if (activeMagnetic) activeMagnetic._linksRect = activeMagnetic.getBoundingClientRect();
+        if (activeCard) activeCard._linksRect = activeCard.getBoundingClientRect();
+      }, { passive: true });
     }
+
+    document.addEventListener('visibilitychange', () => {
+      document.body.classList.toggle('links-paused', document.hidden);
+    });
 
     function showToast(message: string) {
       const toast = document.getElementById('links-toast');

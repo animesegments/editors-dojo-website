@@ -1,5 +1,5 @@
 ---
-const particleCount = 32;
+const particleCount = 22;
 ---
 
 <div class="links-ambient" aria-hidden="true">
@@ -26,32 +26,54 @@ const particleCount = 32;
     let targetY = -9999;
     let currentX = -9999;
     let currentY = -9999;
-    let active = false;
+    let ticking = false;
 
     function tick() {
-      currentX += (targetX - currentX) * 0.12;
-      currentY += (targetY - currentY) * 0.12;
+      const dx = targetX - currentX;
+      const dy = targetY - currentY;
+
+      if (Math.abs(dx) < 0.4 && Math.abs(dy) < 0.4) {
+        currentX = targetX;
+        currentY = targetY;
+        glow.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
+        ticking = false;
+        return;
+      }
+
+      currentX += dx * 0.14;
+      currentY += dy * 0.14;
       glow.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
       rafId = requestAnimationFrame(tick);
+    }
+
+    function startTick() {
+      if (!ticking) {
+        ticking = true;
+        rafId = requestAnimationFrame(tick);
+      }
     }
 
     function onMove(event: MouseEvent) {
       targetX = event.clientX;
       targetY = event.clientY;
-      if (!active) {
-        active = true;
-        glow.classList.add('is-active');
-        rafId = requestAnimationFrame(tick);
-      }
+      glow.classList.add('is-active');
+      startTick();
     }
 
     function onLeave() {
-      active = false;
       glow.classList.remove('is-active');
       cancelAnimationFrame(rafId);
+      ticking = false;
     }
 
     window.addEventListener('mousemove', onMove, { passive: true });
     document.documentElement.addEventListener('mouseleave', onLeave);
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        cancelAnimationFrame(rafId);
+        ticking = false;
+      }
+    });
   }
 </script>
