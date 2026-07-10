@@ -7,7 +7,22 @@
       "destination": "/links"
     },
     {
-      "source": "/((?!_astro|assets|fonts|favicon\\.ico|links).*)",
+      "source": "/portfolio",
+      "has": [{ "type": "host", "value": "links.editorsdojo.site" }],
+      "destination": "/links"
+    },
+    {
+      "source": "/about",
+      "has": [{ "type": "host", "value": "links.editorsdojo.site" }],
+      "destination": "/links"
+    },
+    {
+      "source": "/contact",
+      "has": [{ "type": "host", "value": "links.editorsdojo.site" }],
+      "destination": "/links"
+    },
+    {
+      "source": "/services",
       "has": [{ "type": "host", "value": "links.editorsdojo.site" }],
       "destination": "/links"
     }

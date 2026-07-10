@@ -1,19 +1,20 @@
 import { rewrite } from '@vercel/functions';
 
-const LINKS_HOST = 'links.editorsdojo.site';
-
-const PASSTHROUGH_PREFIXES = ['/_astro/', '/assets/', '/fonts/', '/links'];
-
 function shouldPassthrough(pathname: string) {
   if (pathname === '/favicon.ico') return true;
-  return PASSTHROUGH_PREFIXES.some((prefix) => pathname.startsWith(prefix));
+  return (
+    pathname.startsWith('/_astro/') ||
+    pathname.startsWith('/assets/') ||
+    pathname.startsWith('/fonts/') ||
+    pathname.startsWith('/links')
+  );
 }
 
 export const config = {
   matcher: [
     {
       source: '/(.*)',
-      has: [{ type: 'host', value: LINKS_HOST }],
+      has: [{ type: 'host', value: 'links.editorsdojo.site' }],
     },
   ],
 };
