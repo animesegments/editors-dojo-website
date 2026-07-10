@@ -1,7 +1,13 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     {
       "source": "/",
+      "has": [{ "type": "host", "value": "links.editorsdojo.site" }],
+      "destination": "/links"
+    },
+    {
+      "source": "/((?!_astro|assets|fonts|favicon\\.ico|links).*)",
       "has": [{ "type": "host", "value": "links.editorsdojo.site" }],
       "destination": "/links"
     }
